@@ -952,6 +952,136 @@
       }
     },
     {
+      "key": "pirate_cargo_ef",
+      "name": "Bulk Cargo",
+      "origin": "Pirate",
+      "side": "Pirate",
+      "artfileroot": "pirate_cargo",
+      "meshscale": 5.5595555305481,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "meshrotate": 0,
+      "shields": [
+        30,
+        30
+      ],
+      "hullpoints": 6,
+      "long_desc": "Freighter of the pirate fleet. Lightly armed.^1 weak defensive beam^1 torpedo tube^Stores for 3 homings^Shields 80 front, 60 rear^2 fighters^Warp drive",
+      "baycount": 2,
+      "tubecount": 1,
+      "torpedostart": [
+        {
+          "Homing": 3
+        },
+        {
+          "Nuke": 0
+        },
+        {
+          "EMP": 0
+        },
+        {
+          "Mine": 0
+        }
+      ],
+      #     "torpedostart": {"Homing": 8, "Nuke": 0, "EMP": 2, "Mine": 1 },
+      "internalmapscale": 1.0,
+      "internalmapw": 7,
+      "internalmaph": 16,
+      "internalsymmetry": 1,
+      "turn_rate": 0.5,
+      "speed_coeff": 0.4,
+      "scan_strength_coeff": 1.0,
+      "ship_energy_cost": 0.8,
+      "warp_energy_cost": 1.2,
+      "jump_energy_cost": 1.5,
+      "roles": "ship,pirate,transport",
+      # 2 bomber-capable hangars + 1 shuttle
+      "hull_port_sets": {
+        "beam Primary Beams": [
+          {
+            "position": [
+              2,
+              4,
+              6
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ff15",
+            "cycle_time": 1.0,
+            "damage_coeff": 0.5,
+            "range": 1000,
+            "arcwidth": 360,
+            "barrel_angle": 0
+          }
+        ],
+        "exhaust": [
+          {
+            "position": [
+              -2.99830627441406,
+              0.11535706371069,
+              -7.56566381454468
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              -2.04807686805725,
+              0.11535706371069,
+              -8.03491306304932
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              -1.2141820192337,
+              0.11535706371069,
+              -8.72314548492432
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              -0.328474342823029,
+              -1.07242977619171,
+              -10.4965152740479
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              2.99830627441406,
+              0.11535706371069,
+              -7.56566381454468
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              2.04807686805725,
+              0.11535706371069,
+              -8.03491306304932
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              1.2141820192337,
+              0.11535706371069,
+              -8.72314548492432
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              0.328474342823029,
+              -1.07242977619171,
+              -10.4965152740479
+            ],
+            "color": "#1b5701"
+          }
+        ]
+      }
+    },
+    {
       #---------------------------------- data for default 3d data (if other data not found) --------------------------------
       "key": "unknown",
       "name": "unknown",
