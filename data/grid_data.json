@@ -585,6 +585,17 @@
  {"grid_objects": [
    {"x": 8.0,"y": 5.0,"name": "shuttle","scale": 1.0,"roles": "room,bay,shuttle"},
   ]},
+"starbase_pirate_shoshushen_command_ef":
+ {"grid_objects": [
+   {"x": 8.0,"y": 5.0,"name": "shuttle","scale": 1.0,"roles": "room,bay,shuttle"},
+   {"x": 8.0,"y": 5.0,"name": "shuttle","scale": 1.0,"roles": "room,bay,shuttle"},
+   {"x": 8.0,"y": 5.0,"name": "fighter-bay","scale": 1.0,"roles": "room,bay,fighter"},
+   {"x": 8.0,"y": 5.0,"name": "fighter-bay","scale": 1.0,"roles": "room,bay,fighter"},
+   {"x": 8.0,"y": 5.0,"name": "fighter-bay","scale": 1.0,"roles": "room,bay,fighter"},
+   {"x": 8.0,"y": 5.0,"name": "bomber-bay","scale": 1.0,"roles": "room,bay,bomber"},
+   {"x": 8.0,"y": 5.0,"name": "bomber-bay","scale": 1.0,"roles": "room,bay,bomber"},
+   {"x": 8.0,"y": 5.0,"name": "bomber-bay","scale": 1.0,"roles": "room,bay,bomber"},
+  ]},
 "tsn_light_cruiser":
  {"grid_objects": [
    {"x": 2.0,"y": 14.0,"name": "WARP","scale": 1.0,"roles": "system,ENGINE,WARP"},
