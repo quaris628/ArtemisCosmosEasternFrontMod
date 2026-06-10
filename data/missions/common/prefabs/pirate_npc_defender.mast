@@ -1,0 +1,44 @@
+default shared SHIP_NAME_DATA = load_json_string(media_read_relative_file("shipnames.json"))
+
+
+=== prefab_pirate_npc_defender
+metadata: ```
+type: prefab/npc/pirate/defender
+side_value: tsn
+objective: objective_protect_area
+give_orders_type: objective/orders/defender
+allies: civ, pirate, surrendered
+```
+    
+    default name = f"PVTR {random.choice(SHIP_NAME_DATA.get('tsn'))}"
+    default origin = "Pirate"
+    default crew = origin
+    default face = None
+    default max_hull_points = 10
+    
+    possible_pirate_defender_ship_type_keys = ~~[
+        "pirate_longbow_ef"
+    ]~~
+    
+    # ShoShuShen might have Strongbows defending it, but Smuggler's Dens never will
+    if IS_SPAWNING_NEAR_SHOSHUSHEN:
+        possible_pirate_defender_ship_type_keys.append("pirate_strongbow_ef")
+    
+    default ship_type_key = random.choice(possible_pirate_defender_ship_type_keys)
+    
+    friend = to_object(npc_spawn(START_X, START_Y, START_Z, name, side_value+",friendly,pirate,prefab_pirate_npc_defender", ship_type_key, "behav_npcship"))
+    if face is None:
+        if (crew is None or crew=="terran" or crew == "tsn") and side_value == "tsn":
+            # Force terran defenders to be military and not civilian
+            set_face(friend.id, random_terran(civilian=False))
+        set_face(friend.id, random_face(crew))
+    
+    if allies is not None:
+        friend.data_set.set("ally_list",allies,0)
+    friend.data_set.set("radar_color_override", color_map_pirate_npc())
+
+    set_inventory_value(friend, "give_orders_type", give_orders_type)
+    
+    # Objective will set brain 
+    objective_add(friend.id, objective)
+    yield result friend.id
