@@ -53,6 +53,7 @@ data/missions/common/dmx.py
 !data/graphics/ships/pirate_cargo**
 !data/graphics/ships/pirate_science**
 !data/graphics/ships/jager**
+!data/graphics/ships/pirate_ximni_graybeards_ghost**
 
 !data/audio/Artemis 2 audio replacement notes.txt
 !data/audio/beep1.wav
