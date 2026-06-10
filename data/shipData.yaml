@@ -802,6 +802,156 @@
       }
     },
     {
+      "key": "pirate_toranado_ef",
+      "name": "Toranado",
+      "origin": "Pirate",
+      "side": "Pirate",
+      "artfileroot": "toranado",
+      "meshscale": 0.0577181242406368,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "meshrotate": 0,
+      "shields": [
+        80,
+        60
+      ],
+      "hullpoints": 2,
+      "long_desc": "Missile cruiser of the pirate fleet.^1 heavy artillery beam, 2 weak defensive beams^4 torpedo tubes^Stores for 20 homings, 8 nukes, 12 EMPs, 14 mines^Shields 90 front, 90 rear^1 fighter, 1 bomber^Warp drive",
+      "baycount": 2,
+      "tubecount": 4,
+      "torpedostart": [
+        {
+          "Homing": 20
+        },
+        {
+          "Nuke": 8
+        },
+        {
+          "EMP": 12
+        },
+        {
+          "Mine": 14
+        }
+      ],
+      #     "torpedostart": {"Homing": 8, "Nuke": 0, "EMP": 2, "Mine": 1 },
+      "internalmapscale": 1.0,
+      "internalmapw": 11,
+      "internalmaph": 11,
+      "internalsymmetry": 1,
+      "turn_rate": 1.2,
+      "speed_coeff": 1.0,
+      "scan_strength_coeff": 1.0,
+      "ship_energy_cost": 0.8,
+      "warp_energy_cost": 0.6,
+      "jump_energy_cost": 1.4,
+      "roles": "ship,pirate",
+      # 2 hangars (1 fighter-only, 1 bomber-capable) + 1 shuttle
+      "hull_port_sets": {
+        "beam Primary Beams": [
+          {
+            "position": [
+              0.0,
+              44,
+              0.0
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ff15",
+            "cycle_time": 6.0,
+            "damage_coeff": 0.5,
+            "range": 500,
+            "arcwidth": 360,
+            "barrel_angle": 0
+          },
+          {
+            "position": [
+              0.0,
+              -22,
+              0.0
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ff15",
+            "cycle_time": 6.0,
+            "damage_coeff": 0.5,
+            "range": 500,
+            "arcwidth": 360,
+            "barrel_angle": 0
+          },
+          {
+            "position": [
+              0.0,
+              0.0,
+              256.0
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ff2a",
+            "cycle_time": 15.0,
+            "damage_coeff": 20,
+            "range": 2000,
+            "arcwidth": 72,
+            "barrel_angle": 0
+          }
+        ],
+        "exhaust": [
+          {
+            "position": [
+              -400.0,
+              -137.0,
+              -657.576599121094
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              400.0,
+              -137.0,
+              -657.576599121094
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              -101.598770141602,
+              20.3027496337891,
+              -657.576599121094
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              101.598770141602,
+              20.3027496337891,
+              -657.576599121094
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              -235.820663452148,
+              -54.4784965515137,
+              -657.266052246094
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              235.820663452148,
+              -54.4784965515137,
+              -657.266052246094
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              0.0,
+              54.0,
+              -707.0
+            ],
+            "color": "#1b5701"
+          }
+        ]
+      }
+    },
+    {
       #---------------------------------- data for default 3d data (if other data not found) --------------------------------
       "key": "unknown",
       "name": "unknown",
