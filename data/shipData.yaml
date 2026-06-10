@@ -1592,6 +1592,26 @@
     },
     {
       #---------------------------------- Starbase data --------------------------------
+      "key": "starbase_pirate_market_civil_ef",
+      "name": "Smuggler's Den",
+      "origin": "Pirate",
+      "side": "Pirate",
+      "artfileroot": "civil_station",
+      "meshscale": 10.0,
+      "radarscale": 1.0,
+      "internalmapscale": 1.0,
+      "internalmapw": 41,
+      "internalmaph": 40,
+      "internalsymmetry": 1,
+      "exclusionradius": 120.0,
+      "shields": [
+        300
+      ],
+      "hullpoints": 100,
+      "roles": "station,pirate"
+    },
+    {
+      #---------------------------------- Starbase data --------------------------------
       "key": "starbase_command",
       "name": "Command Starbase",
       "origin": "TSN",
