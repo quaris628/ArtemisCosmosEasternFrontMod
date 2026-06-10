@@ -42,7 +42,12 @@ if client_id == 0:
             spawn_pos = spawn_pos.rand_offset(3500, 5300, ring=True)
 
         data = {"START_X": spawn_pos.x, "START_Y": spawn_pos.y, "START_Z": spawn_pos.z}
-        prefab_spawn(prefab_npc_defender, data)
+        if is_pirate(so.id):
+            # TODO
+            # prefab_spawn(prefab_npc_pirate_defender, data)
+            continue
+        else:
+            prefab_spawn(prefab_npc_defender, data)
         count -= 1
 
 
@@ -69,14 +74,18 @@ if client_id == 0:
 
     prefabs = [prefab_npc_civilian_cargo, prefab_npc_civilian_science, prefab_npc_civilian_luxury_liner, prefab_npc_civilian_transport]
     for count in range(civilian_count):
-        #
-        prefab = random.choice(prefabs)
-        #
         if len(stations_friendly) > 0:
             so = random.choice(stations_friendly)
             spawn_pos = so.pos
             spawn_pos = spawn_pos.rand_offset(3500, 5300, ring=True)
-
+        
+        if is_pirate(so.id):
+            # TODO
+            #prefab = random.choice(pirate_unarmed_prefabs)
+            continue
+        else:
+            prefab = random.choice(prefabs)
+        
         data = {"START_X": spawn_pos.x, "START_Y": spawn_pos.y, "START_Z": spawn_pos.z}
         prefab_spawn(prefab, data)
 

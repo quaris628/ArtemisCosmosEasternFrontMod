@@ -1,3 +1,5 @@
+import ../../common/pirate_features_definitions.py
+
 import ../comms/enemy_surrender.py
 #import ../game_setup/game_state.py
 
