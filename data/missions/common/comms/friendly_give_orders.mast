@@ -24,7 +24,11 @@
         for obj_id in obj_ids:
             obj = to_object(obj_id)
             continue if obj is None
-            detail = obj.get_inventory_value("desc")
+            if is_pirate(COMMS_SELECTED_ID) and not is_pirate(COMMS_ORIGIN_ID):
+                # pirates will not be entirely truthful to non-pirate ships
+                detail = obj.get_inventory_value("cover_desc")
+            else:
+                detail = obj.get_inventory_value("desc")
             continue if detail is None
             if detail == "":
                 detail = "Receiving new orders"
