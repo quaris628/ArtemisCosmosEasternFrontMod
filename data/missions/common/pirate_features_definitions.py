@@ -82,9 +82,8 @@ def is_pirate_military(ship_id):
     return ship_type_key in pirate_military_ship_type_keys
 
 def is_neutral_civilian(ship_id):
-    # Stub for now
-    # TODO designate some station types that return True later
-    return False
+    ship_type_key = get_ship_type_key(ship_id)
+    return ship_type_key == "starbase_salvage_yard_industry_ef"
 
 def is_tsn(ship_id):
     origin = get_origin(ship_id)

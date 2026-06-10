@@ -3,6 +3,7 @@ import ../../common/spawn_wreck.py
 import ../../common/wreck_anomaly_types.py
 import ../../common/common_signals.py
 import ../../common/docking_permissions.py
+import ../../common/salvage_yard.py
 
 import damage.mast
 import destroy.py

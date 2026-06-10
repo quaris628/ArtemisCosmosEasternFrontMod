@@ -16,6 +16,7 @@ import math
 from data.missions.common.station_type_abbreviations import get_station_type_abbrev
 from data.missions.common.pirate_features_definitions import is_pirate, is_neutral_civilian
 from data.missions.common.map_color_constants import color_map_pirate_station, color_map_neutral_civilian_station
+from data.missions.common.salvage_yard import salvage_yard_ship_type_key, spawn_wrecks_and_derelicts_around
 
 NEB_MAX_SIZE = 1500
 NEB_SIZE_LARGE = 1500
@@ -93,7 +94,7 @@ def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, 
     if center is None:
         center = Vec3(0,0,0)
 
-    _station_weights  = {"starbase_pirate_market_civil_ef": 2, "starbase_pirate_shoshushen_command_ef": 3, "starbase_industry": 5,"starbase_command": 3,"starbase_civil": 1,"starbase_science": 1}
+    _station_weights  = {"starbase_pirate_market_civil_ef": 2, "starbase_pirate_shoshushen_command_ef": 3, salvage_yard_ship_type_key(): 5, "starbase_industry": 5,"starbase_command": 3,"starbase_civil": 1,"starbase_science": 1}
     # make the list of stations we will create -----------------------------------------------
     station_type_list = []
     total_weight = (12-DIFFICULTY) *2
@@ -172,6 +173,10 @@ def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, 
             station_object.data_set.set("radar_color_override", color_map_pirate_station())
         elif is_neutral_civilian(station_object.id):
             station_object.data_set.set("radar_color_override", color_map_neutral_civilian_station())
+        
+        # spawn derelict ships and wrecks around salvage yard station
+        if stat_type == salvage_yard_ship_type_key():
+            spawn_wrecks_and_derelicts_around(pos, station_object.id, lethal_value > 0)
         
         # wrap a minefield around the station ----------------------------
         if lethal_value > 0:
