@@ -2,6 +2,7 @@
 station_type_key_to_abbrev_map = {
     "starbase_pirate_market_civil_ef": "DEN",
     "starbase_pirate_shoshushen_command_ef": "SHO",
+    "starbase_salvage_yard_industry_ef": "SLV",
     "starbase_industry": "IND",
     "starbase_command": "CMD",
     "starbase_civil": "CIV",

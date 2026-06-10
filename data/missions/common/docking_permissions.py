@@ -14,6 +14,7 @@ from sbs_utils.procedural.roles import all_roles, role
 
 from data.missions.common.distance_utils import get_space_objects_within_radius
 from data.missions.common.pirate_features_definitions import is_raider, is_pirate, is_tsn, is_ximni, is_civilian_air_patrol, is_pirate_civilian, is_pirate_military, is_neutral_civilian, is_tsn_civilian, is_tsn_military
+from data.missions.common.salvage_yard import is_banned_from_salvage_yard
 
 # ----- Gameplay constants -----
 
@@ -70,31 +71,31 @@ def test_player_capital_ship_dock(player_ship_id, dock_object_id, ignore_enemy_n
     if is_raider(dock_object_id):
         static_perms = dock_attempt_result_disallowed_always_hostile()
     
+    elif is_neutral_civilian(dock_object_id):
+        if is_banned_from_salvage_yard(player_ship_id, dock_object_id):
+            static_perms = dock_attempt_result_disallowed_vandalized_salvage_yard()
+        elif is_tsn_military(player_ship_id):
+            static_perms = dock_attempt_result_disallowed_military_unwelcome()
+        else:
+            static_perms = dock_attempt_result_allowed_but_dont_vandalize()
+    
     elif is_tsn(player_ship_id):
         if is_tsn(dock_object_id):
             static_perms = dock_attempt_result_allowed_always_welcome()
         elif is_pirate(dock_object_id):
             static_perms = test_player_capital_tsn_ship_dock_at_pirate(player_ship_id, dock_object_id, skip_is_tsn_check=True)
-        elif is_neutral_civilian(dock_object_id):
-            if is_tsn_civilian(player_ship_id):
-                return dock_attempt_result_allowed_always_welcome()
-            elif is_tsn_military(player_ship_id):
-                return dock_attempt_result_disallowed_military_unwelcome()
-            else:
-                # Should never happen, tsn should be either civilian or military
-                return dock_attempt_result_allowed_always_welcome()
         else:
-            # Should never happen, stations should be tsn, pirate, or market civilian
+            # Should never happen
             static_perms = dock_attempt_result_allowed_always_welcome()
     
     elif is_pirate(player_ship_id):
-        if is_pirate(dock_object_id) or is_neutral_civilian(dock_object_id):
+        if is_pirate(dock_object_id):
             static_perms = dock_attempt_result_allowed_always_welcome()
         elif is_tsn(dock_object_id):
             static_perms = test_player_capital_pirate_ship_dock_at_tsn(player_ship_id, skip_is_pirate_check=True)
         else:
-            # Should never happen, stations should be tsn, pirate, or market civilian
-            return dock_attempt_result_allowed_always_welcome()
+            # Should never happen
+            static_perms = dock_attempt_result_allowed_always_welcome()
     
     elif is_civilian_air_patrol(player_ship_id):
         static_perms = dock_attempt_result_allowed_always_welcome()
@@ -271,6 +272,8 @@ def get_docking_permissions_status_message(hypothetical_dock_attempt_result):
         return "You have full docking privileges."
     elif hypothetical_dock_attempt_result == dock_attempt_result_allowed_pirate_uneasy_alliance():
         return "You currently have docking privileges."
+    elif hypothetical_dock_attempt_result == dock_attempt_result_allowed_but_dont_vandalize():
+        return "You have docking privileges as long as you behave yourself."
     # dock_attempt_result_disallowed_enemy_near shouldn't apply
     elif hypothetical_dock_attempt_result == dock_attempt_result_disallowed_piracy():
         return "You do NOT have docking privileges."
@@ -280,6 +283,8 @@ def get_docking_permissions_status_message(hypothetical_dock_attempt_result):
         return "You do NOT have docking privileges. Military vessels are not welcome here."
     elif hypothetical_dock_attempt_result == dock_attempt_result_disallowed_civilian_unwelcome():
         return "You do NOT have docking privileges. Civilians vessels are not welcome here."
+    elif hypothetical_dock_attempt_result == dock_attempt_result_disallowed_vandalized_salvage_yard():
+        return "You do NOT have docking privileges, and you never will, vandal!"
     else:
         # This should never happen
         return "ERROR - Docking clearance records not found"
@@ -360,6 +365,8 @@ def dock_attempt_result_allowed_always_welcome():
     return 1
 def dock_attempt_result_allowed_pirate_uneasy_alliance():
     return 2
+def dock_attempt_result_allowed_but_dont_vandalize():
+    return 10
 def dock_attempt_result_disallowed_enemy_near():
     return 3
 def dock_attempt_result_disallowed_piracy():
@@ -372,10 +379,14 @@ def dock_attempt_result_disallowed_military_unwelcome():
     return 7
 def dock_attempt_result_disallowed_civilian_unwelcome():
     return 8
+def dock_attempt_result_disallowed_vandalized_salvage_yard():
+    return 9
+# If adding an "allowed" result, add it to is_dock_attempt_result_allowed.
+# If adding a "disallowed" result, add it to docking.mast > === docking_check_permissions ===
 
 def is_dock_attempt_result_allowed(dock_attempt_result):
     """
     Returns True if the given dock attempt result is successful.
     Returns False if the given dock attempt result is a failure.
     """
-    return dock_attempt_result in {dock_attempt_result_allowed_always_welcome(), dock_attempt_result_allowed_pirate_uneasy_alliance()}
+    return dock_attempt_result in {dock_attempt_result_allowed_always_welcome(), dock_attempt_result_allowed_pirate_uneasy_alliance(), dock_attempt_result_allowed_but_dont_vandalize()}

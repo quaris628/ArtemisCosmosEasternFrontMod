@@ -302,6 +302,14 @@ match_side: True
                 % We don't just give away our protection to anyone who asks for it.
                 % Sheltering you would be more trouble than it's worth.
             comms_broadcast(DOCKING_PLAYER_ID, "Docking denied, civilian.")
+        elif dock_attempt_result == dock_attempt_result_disallowed_vandalized_salvage_yard():
+            <<[red,white] "Docking Clearance Denied Forever"
+                % You are not welcome here, vandal. We will not allow you to dock.
+                % After everything you've destroyed!? Fat chance!
+                % We do not assist vandals or thieves. Go away.
+                % Your crimes will not be forgotten. We will not help you.
+                % You destroy my shipwrecks, then have the audacity to beg for docking clearance?
+            comms_broadcast(DOCKING_PLAYER_ID, "Docking denied, vandal!")
     
     yield result False
 
