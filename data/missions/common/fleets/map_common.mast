@@ -43,9 +43,8 @@ if client_id == 0:
 
         data = {"START_X": spawn_pos.x, "START_Y": spawn_pos.y, "START_Z": spawn_pos.z}
         if is_pirate(so.id):
-            # TODO
-            # prefab_spawn(prefab_npc_pirate_defender, data)
-            continue
+            data["IS_SPAWNING_NEAR_SHOSHUSHEN"] = so.art_id == "starbase_pirate_shoshushen_command_ef"
+            prefab_spawn(prefab_pirate_npc_defender, data)
         else:
             prefab_spawn(prefab_npc_defender, data)
         count -= 1

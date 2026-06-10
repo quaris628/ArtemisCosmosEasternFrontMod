@@ -9,3 +9,4 @@ import terrain_prefabs.mast
 import station_prefabs.mast
 import lifeform_prefabs.mast
 import pirate_npc_noncombat.mast
+import pirate_npc_defender.mast
