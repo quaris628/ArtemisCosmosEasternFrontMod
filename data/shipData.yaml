@@ -5179,7 +5179,7 @@
       "internalmaph": 21,
       "internalsymmetry": 1,
       "turn_rate": 0.6,
-      "speed_coeff": 1,
+      "speed_coeff": 0.8,
       "scan_strength_coeff": 1,
       "ship_energy_cost": 1,
       "warp_energy_cost": 2.0,
