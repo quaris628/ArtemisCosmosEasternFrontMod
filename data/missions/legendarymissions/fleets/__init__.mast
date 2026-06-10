@@ -1,4 +1,5 @@
 import ../comms/enemy_surrender.py
+import ../../common/pirate_features_definitions.py
 
 import fleet.py
 import fleet.mast
