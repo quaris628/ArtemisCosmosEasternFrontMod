@@ -25,7 +25,7 @@
     sim.delete_navproxy_by_id(nav_id)
 
 # The "tsn" role isn't assigned to these killed tsn ships, at least at the time this event runs
-//damage/killed if is_tsn(DAMAGE_SELECTED_ID)
+//damage/killed if is_tsn(DAMAGE_SELECTED_ID) or is_neutral_civilian(DAMAGE_SELECTED_ID)
     destroyed_by_ship_id = get_player_capital_ship_attributed_to_damage(DAMAGE_SOURCE_ID, DAMAGE_PARENT_ID)
     
     if destroyed_by_ship_id is not None and not has_killed_tsn(destroyed_by_ship_id):
