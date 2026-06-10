@@ -48,6 +48,8 @@ data/missions/common/dmx.py
 !data/missions/secretmeeting/**
 !data/missions/walktheline/**
 
+!data/graphics/ships/advanced_longbow**
+
 !data/audio/Artemis 2 audio replacement notes.txt
 !data/audio/beep1.wav
 !data/audio/beep10.wav
