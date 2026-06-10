@@ -91,3 +91,6 @@ data/missions/common/dmx.py
 !data/audio/shld_down.wav
 !data/audio/shld_up.wav
 !data/audio/tractor.wav
+
+!data/graphics/CosmosLogo.png
+!data/graphics/grid-icon-sheet.png
