@@ -44,13 +44,31 @@
     wr_posz = wr_eobj.pos.z
     wr_pos = wr_eobj.pos        # Need this vector for the particle effect
     wr_origin = wr.origin ##get_inventory_value(wr.id, "hull_side", 0)
-
+    
+    wr_original_hullpoints = get_inventory_value(wr.id, "hull_type")
+    was_derelict_ship = has_role(DAMAGE_TARGET_ID, derelict_tsn_role_key())
+    owned_by_station_id = get_owned_by_station_id(DAMAGE_TARGET_ID)
+    
     # Once we have the position and the side value, destroy the wreck, delete the engine object, and generate a particle effect. 
 
     wr.destroyed()
     sbs.delete_object(DAMAGE_TARGET_ID)
     sbs.particle_at(wr_pos, "color:#FA0,#F00; lifespan:60; image_cell:12; size:3; speed:1; count:100,1000")
-
+    
+    if owned_by_station_id is not None:
+        owned_by_station_object = to_space_object(owned_by_station_id)
+        if owned_by_station_object is not None:
+            # Station owner gets mad
+            damaged_by_ship_id = get_player_capital_ship_attributed_to_damage(DAMAGE_SOURCE_ID, DAMAGE_PARENT_ID)
+            if damaged_by_ship_id is not None:
+                on_salvage_yard_property_destroyed(damaged_by_ship_id, owned_by_station_object)
+    
+    if was_derelict_ship and random.getrandbits(1):
+        # 50%/50% chance derelict ship spawns normal wreck instead of anomaly
+        wreck_spawn_data = spawn_wreck(wr_pos, wr_origin, wr_original_hullpoints)
+        set_owned_by_station_id(wreck_spawn_data.id, owned_by_station_id)
+        ->END
+    
     # From the Start Mission screen, UPGRADE_SELECT determines how frequently upgrades are dropped. 
 
     upg_dropchance = 0
@@ -62,7 +80,13 @@
         upg_dropchance = 6
     elif "max" == UPGRADE_SELECT:
         upg_dropchance = 8
-
+    
+    if owned_by_station_id is not None:
+        # A large field of wrecks at normal drop chance would be way too OP
+        # So decrease chance of dropping anomaly, so we can make field nice
+        # and large without making collecting anomalies from it OP
+        upg_dropchance *= 0.5
+    
     # Generate random number, end task if upg_rand is higher than the drop chance (determined by UPGRADE_SELECT)
 
     upg_rand = random.randint(1,10)
