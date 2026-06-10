@@ -581,6 +581,10 @@
    {"x": 6.0,"y": 2.0,"name": "crew-quarters","scale": 1.0,"roles": "room,cabin,quarters"},
    {"x": 6.0,"y": 3.0,"name": "sick-bay","scale": 1.0,"roles": "room,med,sickbay"},
   ]},
+"starbase_pirate_market_civil_ef":
+ {"grid_objects": [
+   {"x": 8.0,"y": 5.0,"name": "shuttle","scale": 1.0,"roles": "room,bay,shuttle"},
+  ]},
 "tsn_light_cruiser":
  {"grid_objects": [
    {"x": 2.0,"y": 14.0,"name": "WARP","scale": 1.0,"roles": "system,ENGINE,WARP"},

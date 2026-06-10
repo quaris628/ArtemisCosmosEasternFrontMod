@@ -59,7 +59,8 @@ def is_pirate_civilian(ship_id):
     pirate_civilian_ship_type_keys = {
         "pirate_shuttle_ef",
         "pirate_cargo_ef",
-        "pirate_science_ef"
+        "pirate_science_ef",
+        "starbase_pirate_market_civil_ef"
     }
     return ship_type_key in pirate_civilian_ship_type_keys
 
