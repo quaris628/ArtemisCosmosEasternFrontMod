@@ -118,44 +118,44 @@ PLAYER_CREATE_DEFAULT: true
 PLAYER_COUNT: 1
 PLAYER_SHIP_RESPAWN: false
 PLAYER_LIST: 
-    -   name: "Artemis"
+    -   name: "Farside"
+        side: "tsn"
+        ship: "pirate_strongbow_ef"
+        face: "terran"
+
+    -   name: "Fulminatae"
+        side: "tsn"
+        ship: "pirate_brigantine_ef"
+        face: "terran"
+
+    -   name: "Jimi-Saru"
+        side: "tsn"
+        ship: "pirate_advanced_longbow_ef"
+        face: "terran"
+
+    -   name: "Apocalypse"
+        side: "tsn"
+        ship: "pirate_toranado_ef"
+        face: "terran"
+
+    -   name: "Academia"
         side: "tsn"
         ship: "tsn_light_cruiser"
         face: "terran"
 
-    -   name: "Intrepid"
+    -   name: "Rum Runner"
         side: "tsn"
-        ship: "tsn_battle_cruiser"
+        ship: "pirate_cargo_ef"
         face: "terran"
 
-    -   name: "Aegis"
+    -   name: "Broadsides"
         side: "tsn"
-        ship: "tsn_battle_cruiser"
+        ship: "pirate_jager_ef"
         face: "terran"
 
-    -   name: "Horatio"
+    -   name: "GrayBeard's Ghost"
         side: "tsn"
-        ship: "tsn_battle_cruiser"
-        face: "terran"
-
-    -   name: "Excalibur"
-        side: "tsn"
-        ship: "tsn_battle_cruiser"
-        face: "terran"
-
-    -   name: "Hera"
-        side: "tsn"
-        ship: "tsn_battle_cruiser"
-        face: "terran"
-
-    -   name: "Ceres"
-        side: "tsn"
-        ship: "tsn_battle_cruiser"
-        face: "terran"
-
-    -   name: "Diana"
-        side: "tsn"
-        ship: "tsn_battle_cruiser"
+        ship: "pirate_ximni_graybeards_ghost_ef"
         face: "terran"
 
 # Console settings
