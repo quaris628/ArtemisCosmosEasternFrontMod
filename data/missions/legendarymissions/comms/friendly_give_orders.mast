@@ -37,10 +37,10 @@
 
 
 
-//enable/comms if has_any_role(COMMS_ORIGIN_ID, "__player__,admiral") and has_roles(COMMS_SELECTED_ID, "prefab_npc_defender")
+//enable/comms if has_any_role(COMMS_ORIGIN_ID, "__player__,admiral") and has_any_role(COMMS_SELECTED_ID, "prefab_npc_defender,prefab_pirate_npc_defender")
 
 
-//comms if has_any_role(COMMS_ORIGIN_ID, "__player__,admiral") and has_roles(COMMS_SELECTED_ID, "prefab_npc_defender") 
+//comms if has_any_role(COMMS_ORIGIN_ID, "__player__,admiral") and has_any_role(COMMS_SELECTED_ID, "prefab_npc_defender,prefab_pirate_npc_defender")
     + "Hail":
         obj_ids = linked_to(COMMS_SELECTED_ID, "OBJECTIVE")
         yield success if len(obj_ids) == 0
@@ -57,7 +57,7 @@
 
 
 
-//popup/comms if has_any_role(COMMS_ORIGIN_ID, "__player__,admiral") and has_roles(COMMS_SELECTED_ID, "prefab_npc_defender") and COMMS_POPUP_ID == COMMS_SELECTED_ID
+//popup/comms if has_any_role(COMMS_ORIGIN_ID, "__player__,admiral") and has_any_role(COMMS_SELECTED_ID, "prefab_npc_defender,prefab_pirate_npc_defender") and COMMS_POPUP_ID == COMMS_SELECTED_ID
     
     label_type = get_inventory_value(COMMS_SELECTED_ID, "give_orders_type")
 
@@ -76,7 +76,7 @@
 
 
 
-//popup/comms if has_any_role(COMMS_ORIGIN_ID, "__player__,admiral") and has_roles(COMMS_SELECTED_ID, "prefab_npc_defender") and COMMS_POPUP_ID != COMMS_SELECTED_ID
+//popup/comms if has_any_role(COMMS_ORIGIN_ID, "__player__,admiral") and has_any_role(COMMS_SELECTED_ID, "prefab_npc_defender,prefab_pirate_npc_defender") and COMMS_POPUP_ID != COMMS_SELECTED_ID
     label_type = get_inventory_value(COMMS_SELECTED_ID, "give_orders_type")
 
     orders = labels_get_type(label_type)
