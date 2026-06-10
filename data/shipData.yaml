@@ -1651,7 +1651,7 @@
     {
       #---------------------------------- Starbase data --------------------------------
       "key": "starbase_command",
-      "name": "Command Starbase",
+      "name": "Local Militia Command",
       "origin": "TSN",
       "side": "USFP",
       "artfileroot": "tsn-big-base",
