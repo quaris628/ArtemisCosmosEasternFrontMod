@@ -1571,6 +1571,204 @@
       }
     },
     {
+      "key": "derelict_tsn_light_cruiser_ef",
+      "name": "Derelict TSN Light Cruiser",
+      "side": "wreck",
+      "artfileroot": "tsn_light_cruiser",
+      "meshscale": 0.171711415052414,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 3
+    },
+    {
+      "key": "derelict_tsn_shuttle_ef",
+      "name": "Derelict TSN Shuttle",
+      "side": "wreck",
+      "artfileroot": "TSNshuttle",
+      "meshscale": 0.0421140976250172,
+      "radarscale": 0.5,
+      "exclusionradius": 25.0,
+      "interactionradius": 603.0,
+      "hullpoints": 1
+    },
+    {
+      "key": "derelict_tsn_fighter_ef",
+      "name": "Derelict TSN Fighter",
+      "side": "wreck",
+      "artfileroot": "TSNfighter",
+      "meshscale": 0.25,
+      "radarscale": 0.3,
+      "exclusionradius": 25.0,
+      "interactionradius": 603.0,
+      "hullpoints": 1
+    },
+    {
+      "key": "derelict_tsn_bomber_ef",
+      "name": "Derelict TSN Bomber",
+      "side": "wreck",
+      "artfileroot": "TSNfighter",
+      "meshscale": 0.0299999993294477,
+      "radarscale": 0.35,
+      "exclusionradius": 25.0,
+      "interactionradius": 603.0,
+      "hullpoints": 1
+    },
+    {
+      "key": "derelict_tsn_battle_cruiser_ef",
+      "name": "Derelict TSN Battle Cruiser",
+      "side": "wreck",
+      "artfileroot": "TSN_BattleCruiser",
+      "meshscale": 0.189593434333801,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 4
+    },
+    {
+      "key": "derelict_tsn_carrier_ef",
+      "name": "Derelict TSN Carrier",
+      "side": "wreck",
+      "artfileroot": "TSNCarrier",
+      "meshscale": 0.191587820649147,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 4
+    },
+    {
+      "key": "derelict_tsn_light_carrier_ef",
+      "name": "Derelict TSN Light Carrier",
+      "side": "wreck",
+      "artfileroot": "TSN_light_Carrier",
+      "meshscale": 0.12073890119791,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 3
+    },
+    {
+      "key": "derelict_tsn_battleship_ef",
+      "name": "Derelict TSN BattleShip",
+      "side": "wreck",
+      "artfileroot": "TSNBattleship",
+      "meshscale": 0.223782032728195,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 5
+    },
+    {
+      "key": "derelict_tsn_warpster_ef",
+      "name": "Derelict TSN Warpster",
+      "side": "wreck",
+      "artfileroot": "TSN_Warpster",
+      "meshscale": 0.0293077416718006,
+      "radarscale": 0.5,
+      "exclusionradius": 20.0,
+      "interactionradius": 603.0,
+      "hullpoints": 2
+    },
+    {
+      "key": "derelict_tsn_missile_cruiser_ef",
+      "name": "Derelict TSN Missile Cruiser",
+      "side": "wreck",
+      "artfileroot": "tsn_missile_cruiser",
+      "meshscale": 0.164697989821434,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 4
+    },
+    {
+      "key": "derelict_tsn_destroyer_ef",
+      "name": "Derelict TSN Destroyer",
+      "side": "wreck",
+      "artfileroot": "TSN_Destroyer",
+      "meshscale": 0.0895302072167397,
+      "radarscale": 0.8,
+      "exclusionradius": 45.0,
+      "interactionradius": 603.0,
+      "hullpoints": 3
+    },
+    {
+      "key": "derelict_tsn_escort_ef",
+      "name": "Derelict TSN Escort",
+      "side": "wreck",
+      "artfileroot": "TSN_Escort",
+      "meshscale": 0.10013423115015,
+      "radarscale": 1.0,
+      "exclusionradius": 44.0,
+      "interactionradius": 603.0,
+      "hullpoints": 2
+    },
+    {
+      "key": "derelict_tsn_heavy_cruiser_ef",
+      "name": "Derelict TSN Heavy Cruiser",
+      "side": "wreck",
+      "artfileroot": "TSN_Heavy_Cruiser",
+      "meshscale": 0.183785244822502,
+      "radarscale": 1.1,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 5
+    },
+    {
+      "key": "derelict_tsn_scout_ef",
+      "name": "Derelict TSN Scout",
+      "side": "wreck",
+      "artfileroot": "TSN_Scout",
+      "meshscale": 0.100000001490116,
+      "radarscale": 0.9,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 2
+    },
+    {
+      "key": "derelict_transport_ship_ef",
+      "name": "Derelict USFP Transport",
+      "side": "wreck",
+      "artfileroot": "transport",
+      "meshscale": 5.82530164718628,
+      "radarscale": 1.0,
+      "exclusionradius": 55.0,
+      "interactionradius": 603.0,
+      "hullpoints": 6
+    },
+    {
+      "key": "derelict_luxury_liner_ef",
+      "name": "Derelict USFP Colony Ship",
+      "side": "wreck",
+      "artfileroot": "leisure_vessel",
+      "meshscale": 6.77265119552612,
+      "radarscale": 1.1,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 5
+    },
+    {
+      "key": "derelict_cargo_ship_ef",
+      "name": "Derelict USFP Cargo",
+      "side": "wreck",
+      "artfileroot": "cargo",
+      "meshscale": 5.5595555305481,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "interactionradius": 603.0,
+      "hullpoints": 2,
+    },
+    {
+      "key": "derelict_science_ship_ef",
+      "name": "Derelict USFP Science",
+      "side": "wreck",
+      "artfileroot": "science_vessel",
+      "meshscale": 4.83322143554688,
+      "radarscale": 1.0,
+      "exclusionradius": 40.0,
+      "interactionradius": 603.0,
+      "hullpoints": 2,
+    },
+    {
       #---------------------------------- data for default 3d data (if other data not found) --------------------------------
       "key": "unknown",
       "name": "unknown",
@@ -1647,6 +1845,26 @@
           }
         ]
       }
+    },
+    {
+      #---------------------------------- Starbase data --------------------------------
+      "key": "starbase_salvage_yard_industry_ef",
+      "name": "Salvage Yard",
+      "origin": "Civ",
+      "side": "Civ",
+      "artfileroot": "industry_station",
+      "meshscale": 10.0,
+      "radarscale": 1.0,
+      "internalmapscale": 1.0,
+      "internalmapw": 31,
+      "internalmaph": 31,
+      "internalsymmetry": 1,
+      "exclusionradius": 120.0,
+      "shields": [
+        300
+      ],
+      "hullpoints": 200,
+      "roles": "station"
     },
     {
       #---------------------------------- Starbase data --------------------------------
