@@ -7,6 +7,7 @@ import ../../common/controller_game_statistics.py
 import ../../common/distance_utils.py
 import ../../common/pirate_features_definitions.py
 import ../../common/docking_permissions.py
+import ../../common/map_color_constants.py
 
 import ../consoles/layout_widgets.py
 

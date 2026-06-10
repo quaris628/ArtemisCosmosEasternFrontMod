@@ -20,7 +20,7 @@
 
     for player in role(fr.side) & role("__player__"):
         player_obj = to_object(player)
-        comms_message(f"Help. {player_obj.name} we are under attack from {source}", DAMAGE_TARGET_ID, player,title="Under attack", title_color="green")
+        comms_message(f"Help. {player_obj.name} we are under attack from {source}", DAMAGE_TARGET_ID, player,title="Under attack", title_color=get_comms_message_title_color(DAMAGE_TARGET_ID))
     #
     # Only request help if you haven't for two minutes
     #
