@@ -3483,7 +3483,7 @@
     #---------------------------------- ship data --------------------------------
     {
       "key": "tsn_destroyer",
-      "name": "Destroyer",
+      "name": "Militia Enforcer",
       "origin": "TSN",
       "side": "TSN",
       "artfileroot": "TSN_Destroyer",
@@ -3491,7 +3491,7 @@
       "radarscale": 0.8,
       "exclusionradius": 45.0,
       "meshrotate": 0,
-      "long_desc": "TSN Destroyer^Standard local patrol vessel of the TSN.^2 forward beams^",
+      "long_desc": "Militia Enforcer^Militia's most common defense vessel.^2 forward beams^",
       "tubecount": 0,
       "torpedostart": [
         {
