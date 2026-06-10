@@ -288,6 +288,20 @@ match_side: True
                 % Only if you surrender the fight first.
                 % I wouldn't open a door for my foe.
             comms_broadcast(DOCKING_PLAYER_ID, "Docking denied, enemy!")
+        elif dock_attempt_result == dock_attempt_result_disallowed_military_unwelcome():
+            <<[red,white] "Docking Clearance Denied"
+                % Don't you have your own starbases to help you out?
+                % Last time I let a navy ship dock, I got loo cleaning duty for a month. I won't make that mistake again.
+                % Military vessels are not welcome here.
+                % We are not under your jurisdiction. Please go away.
+                % As per the TSN military charter section 452 part 98c, civilian establishments cannot be required to quarter soldiers or otherwise give them aid. We invoke that right and wish you a good day, sir!
+            comms_broadcast(DOCKING_PLAYER_ID, "Docking denied, officer.")
+        elif dock_attempt_result == dock_attempt_result_disallowed_civilian_unwelcome():
+            <<[red,white] "Docking Clearance Denied"
+                % You would probably just get in the way.
+                % We don't just give away our protection to anyone who asks for it.
+                % Sheltering you would be more trouble than it's worth.
+            comms_broadcast(DOCKING_PLAYER_ID, "Docking denied, civilian.")
     
     yield result False
 
