@@ -30,3 +30,11 @@ arvonian:
     roles: bomber
   - key: tsn_shuttle
     roles: shuttle
+
+cap:
+  - key: pirate_fighter_ef
+    roles: fighter
+  - key: pirate_bomber_ef
+    roles: bomber
+  - key: pirate_shuttle_ef
+    roles: shuttle

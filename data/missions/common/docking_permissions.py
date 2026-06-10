@@ -13,7 +13,7 @@ from sbs_utils.procedural.query import to_space_object
 from sbs_utils.procedural.roles import all_roles, role
 
 from data.missions.common.distance_utils import get_space_objects_within_radius
-from data.missions.common.pirate_features_definitions import is_raider, is_pirate, is_tsn, is_ximni
+from data.missions.common.pirate_features_definitions import is_raider, is_pirate, is_tsn, is_ximni, is_civilian_air_patrol
 
 # ----- Gameplay constants -----
 
@@ -75,6 +75,9 @@ def test_player_capital_ship_dock(player_ship_id, dock_object_id, ignore_enemy_n
     elif is_pirate(player_ship_id):
         # Assume all (non-hostile) stations are tsn
         static_perms = test_player_capital_pirate_ship_dock_at_tsn(player_ship_id, skip_is_pirate_check=True)
+    
+    elif is_civilian_air_patrol(player_ship_id):
+        static_perms = dock_attempt_result_allowed_always_welcome()
     
     elif is_ximni(player_ship_id):
         static_perms = dock_attempt_result_allowed_always_welcome()
