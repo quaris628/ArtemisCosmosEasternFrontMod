@@ -116,12 +116,18 @@
     
 
     + "{sel} head to location" if COMMS_POPUP_ID == 0:
+        if not is_npc_ship_compliant(COMMS_SELECTED_ID, COMMS_ORIGIN_ID):
+            comms_receive(f"We don't follow your orders, {COMMS_ORIGIN.name}. Request denied.", "Orders Ignored", color="white", title_color="cyan")
+            ->END
         objective_clear(COMMS_SELECTED_ID)
         target_point = Vec3(COMMS_POPUP_POINT)
         comms_receive("Heading to assigned location", "On our way", color="white", title_color="cyan")
 
         objective_add(COMMS_SELECTED_ID, objective_goto_location, {"objective_target_point": target_point, "objective_target": None})
     + "{sel} head to {popup}" if COMMS_POPUP is not None and not are_same:
+        if not is_npc_ship_compliant(COMMS_SELECTED_ID, COMMS_ORIGIN_ID):
+            comms_receive(f"We don't follow your orders, {COMMS_ORIGIN.name}. Request denied.", "Orders Ignored", color="white", title_color="cyan")
+            ->END
         objective_clear(COMMS_SELECTED_ID)
         ->END if not object_exists(COMMS_POPUP_ID)
         target_point = Vec3(COMMS_POPUP.pos)
@@ -130,6 +136,9 @@
         comms_receive(f"Rendezvousing with {COMMS_POPUP.name}", "On our way", color="white", title_color="cyan")
 
     + "{sel} return to work"  {"restore": original, "sel_id": COMMS_SELECTED_ID} if not is_default_objective and are_same:
+        if not is_npc_ship_compliant(COMMS_SELECTED_ID, COMMS_ORIGIN_ID):
+            comms_receive(f"We don't follow your orders, {COMMS_ORIGIN.name}. Request denied.", "Orders Ignored", color="white", title_color="cyan")
+            ->END
         # This is a bit complicated 
         # And not flexible, assumes brain
         # And what data the brain needs saved
@@ -152,6 +161,9 @@
             link(sel_id, "OBJECTIVE_RUN", oid)
 
     + "{sel} full Stop" if are_same:
+        if not is_npc_ship_compliant(COMMS_SELECTED_ID, COMMS_ORIGIN_ID):
+            comms_receive(f"We don't follow your orders, {COMMS_ORIGIN.name}. Request denied.", "Orders Ignored", color="white", title_color="cyan")
+            ->END
         objective_clear(COMMS_SELECTED_ID)
         objective_add(COMMS_SELECTED_ID, objective_full_stop)
         comms_receive("Stopped awaiting new orders", "Full Stop", color="white", title_color="cyan")
@@ -161,6 +173,10 @@
     ->END if COMMS_SELECTED_ID == 0
     ->END if to_object(COMMS_SELECTED_ID) is None
 
+    if not is_npc_ship_compliant(COMMS_SELECTED_ID, COMMS_ORIGIN_ID):
+        comms_receive(f"We don't follow your orders, {COMMS_ORIGIN.name}. Request denied.", "Orders Ignored")
+        ->END
+    
     target_point = get_inventory_value(COMMS_SELECTED_ID, "ORDERS_SELECTED_POINT", None)
     target_object = to_object(get_inventory_value(COMMS_SELECTED_ID, "ORDERS_SELECTED_OBJECT", None))
     if target_object is not None:
