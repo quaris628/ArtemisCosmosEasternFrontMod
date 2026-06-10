@@ -14,6 +14,8 @@ from sbs_utils.procedural.prefab import prefab_spawn
 import math
 
 from data.missions.common.station_type_abbreviations import get_station_type_abbrev
+from data.missions.common.pirate_features_definitions import is_pirate, is_neutral_civilian
+from data.missions.common.map_color_constants import color_map_pirate_station, color_map_neutral_civilian_station
 
 NEB_MAX_SIZE = 1500
 NEB_SIZE_LARGE = 1500
@@ -155,7 +157,13 @@ def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, 
             ret.append(so)
         ds = to_id(station_object)
         set_face(ds, random_terran(civilian=True))
-
+        
+        # Use separate color for pirate and neutral civilian stations
+        if is_pirate(station_object.id):
+            station_object.data_set.set("radar_color_override", color_map_pirate_station())
+        elif is_neutral_civilian(station_object.id):
+            station_object.data_set.set("radar_color_override", color_map_neutral_civilian_station())
+        
         # wrap a minefield around the station ----------------------------
         if lethal_value > 0:
             startAngle = random.randrange(0,359)
