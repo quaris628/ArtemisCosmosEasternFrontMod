@@ -1,4 +1,5 @@
 import ../../common/procedural_terrain.py
+import ../../common/map_color_constants.py
 
 import prefab_helpers.py
 import monster.mast
@@ -9,3 +10,4 @@ import side_prefabs.mast
 import terrain_prefabs.mast
 import station_prefabs.mast
 import lifeform_prefabs.mast
+import pirate_npc_noncombat.mast
