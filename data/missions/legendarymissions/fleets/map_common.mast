@@ -110,8 +110,16 @@
         sbs.player_ship_setup_from_data(player_ship.engine_object)
         player_ship.name = name
 
-
-        if len(stations_friendly) > 0:
+        # If possible, pirates should start near pirate stations, and tsn should start near tsn stations
+        very_friendly_stations = []
+        is_player_pirate = is_pirate(player_ship.id)
+        for station in stations_friendly:
+            if is_pirate(station.id) == is_player_pirate:
+                very_friendly_stations.append(station)
+        if len(very_friendly_stations) > 0:
+            station_to_spawn_nearby = random.choice(very_friendly_stations)
+            player_ship.pos = station_to_spawn_nearby.pos.rand_offset(3500, 5300, ring=True)
+        elif len(stations_friendly) > 0:
             so = random.choice(stations_friendly)
             spawn_pos = so.pos
             spawn_pos = spawn_pos.rand_offset(3500, 5300, ring=True)
