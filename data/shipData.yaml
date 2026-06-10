@@ -1459,6 +1459,118 @@
       }
     },
     {
+      "key": "pirate_ximni_graybeards_ghost_ef",
+      "name": "GrayBeard's Ghost",
+      "origin": "Pirate",
+      "side": "Pirate",
+      "artfileroot": "pirate_ximni_graybeards_ghost",
+      "meshscale": 0.156926184892654,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "meshrotate": 0,
+      "shields": [
+        220,
+        220
+      ],
+      "hullpoints": 9,
+      "long_desc": "Previously a Ximni dreadnought, the GrayBeard's Ghost is a pirate rendition in honor of the late GrayBeard.^2 long range and fast firing forward beams^3 torpedo tubes^Stores for 10 homings, 4 nukes, 5 EMPs, 8 mines^Shields 220 front, 220 rear^2 bombers^Jump drive",
+      "baycount": 2,
+      "tubecount": 3,
+      "torpedostart": [
+        {
+          "Homing": 10
+        },
+        {
+          "Nuke": 4
+        },
+        {
+          "EMP": 5
+        },
+        {
+          "Mine": 8
+        }
+      ],
+      #     "torpedostart": {"Homing": 10, "Nuke": 4, "EMP": 5, "Mine": 8 },
+      "drone_launch_timer": 40,
+      "internalmapscale": 1.0,
+      "internalmapw": 10,
+      "internalmaph": 10,
+      "internalsymmetry": 1,
+      "turn_rate": 1.6,
+      "speed_coeff": 0.6,
+      "scan_strength_coeff": 1,
+      "ship_energy_cost": 1.2,
+      "warp_energy_cost": 1.5,
+      "jump_energy_cost": 0.5,
+      "roles": "ship,warship,heavy,carrier,pirate",
+      "hull_port_sets": {
+        "beam Primary Beams": [
+          {
+            "position": [
+              -321.834075927734,
+              -19.3653202056885,
+              230.510482788086
+            ],
+            "color": "red",
+            "arccolor": "#ff00d4",
+            "cycle_time": 1.5,
+            "damage_coeff": 5,
+            "range": 2600,
+            "arcwidth": 180,
+            "barrel_angle": 333.13
+          },
+          {
+            "position": [
+              321.834075927734,
+              -19.3653202056885,
+              230.510482788086
+            ],
+            "color": "red",
+            "arccolor": "#ff00d4",
+            "cycle_time": 1.5,
+            "damage_coeff": 5,
+            "range": 2600,
+            "arcwidth": 180,
+            "barrel_angle": 26.87
+          }
+        ],
+        "exhaust": [
+          {
+            "position": [
+              -214.341796875,
+              -3.40140986442566,
+              -255.066024780273
+            ],
+            "color": "yellow"
+          },
+          {
+            "position": [
+              -101.856903076172,
+              -10.4201927185059,
+              -235.767944335938
+            ],
+            "color": "yellow"
+          },
+          {
+            "position": [
+              214.341796875,
+              -3.40140986442566,
+              -255.066024780273
+            ],
+            "color": "yellow"
+          },
+          {
+            "position": [
+              101.856903076172,
+              -10.4201927185059,
+              -235.767944335938
+            ],
+            "color": "yellow"
+          }
+        ]
+      }
+    },
+    {
       #---------------------------------- data for default 3d data (if other data not found) --------------------------------
       "key": "unknown",
       "name": "unknown",
