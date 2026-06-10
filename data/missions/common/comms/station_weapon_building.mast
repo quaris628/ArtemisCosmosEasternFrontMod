@@ -4,7 +4,6 @@
 
 
 # Set title colors for incoming messages from stations, raiders, and surrendered raiders.
-shared station_color = "green"
 shared raider_color = "red"
 shared surrender_color = "yellow"
 
@@ -88,7 +87,7 @@ shared surrender_color = "yellow"
             f"{'EMP': <10}{emp: >5}{'': >16}{station_build_times['EMP']}:00",
             f"{'Mine': <10}{mine: >5}{'': >16}{station_build_times['Mine']}:00"
         ]~~
-    comms_receive("\n".join(message_lines), title="Hail", title_color="green")
+    comms_receive("\n".join(message_lines), title="Hail", title_color=get_comms_message_title_color(COMMS_SELECTED_ID))
     
     yield success
 
@@ -101,14 +100,14 @@ shared surrender_color = "yellow"
     ->END if station_obj is None
     
     if not can_command_to_build_weapons(COMMS_ORIGIN_ID, COMMS_SELECTED_ID):
-        comms_receive(f"We don't follow your orders, {comms_id}. Request denied.", title="Build request denied", title_color=station_color)
+        comms_receive(f"We don't follow your orders, {comms_id}. Request denied.", title="Build request denied", title_color=get_comms_message_title_color(COMMS_SELECTED_ID))
         comms_navigate("")
         yield fail
     
     if build_munition_queue_task(station_id, build_type):
-        comms_receive(f"""We read you, {comms_id}.  We will focus on {weapon_text} production.^""", title=f"build {weapon_text}", title_color=station_color)
+        comms_receive(f"""We read you, {comms_id}.  We will focus on {weapon_text} production.^""", title=f"build {weapon_text}", title_color=get_comms_message_title_color(COMMS_SELECTED_ID))
     else:
-        comms_receive(f"""{comms_id}, we are already producing {weapon_text}.^""", title=f"build {weapon_text}", title_color=station_color)
+        comms_receive(f"""{comms_id}, we are already producing {weapon_text}.^""", title=f"build {weapon_text}", title_color=get_comms_message_title_color(COMMS_SELECTED_ID))
 
     comms_navigate("")
     yield success
@@ -151,7 +150,7 @@ shared surrender_color = "yellow"
             continue
         
         comms_id = ship_obj.name
-        comms_receive(f"""{comms_id}. {torp_name} Production complete.""", title=f"""{torp_name} complete.""", title_color=station_color)
+        comms_receive(f"""{comms_id}. {torp_name} Production complete.""", title=f"""{torp_name} complete.""", title_color=get_comms_message_title_color(COMMS_SELECTED_ID))
 
     ->task_station_building
 
