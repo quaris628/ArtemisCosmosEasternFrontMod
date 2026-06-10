@@ -5241,7 +5241,7 @@
     #---------------------------------- ship data --------------------------------
     {
       "key": "luxury_liner",
-      "name": "Luxury Liner",
+      "name": "Colony Ship",
       "origin": "TSN",
       "side": "USFP",
       "artfileroot": "leisure_vessel",
@@ -5254,7 +5254,7 @@
         90
       ],
       "hullpoints": 5,
-      "long_desc": "An unarmed luxury ship, filled with wealthy civilians in fancy clothes. Displacement: 65 kt. ",
+      "long_desc": "An unarmed travelling Colony ship. Displacement: 65 kt. ",
       "tubecount": 0,
       "torpedostart": [
         {
