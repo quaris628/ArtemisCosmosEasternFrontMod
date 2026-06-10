@@ -10,7 +10,7 @@ from sbs_utils.procedural.roles import has_role
 # ----- looting -----
 
 def can_loot(player_ship_id):
-    return is_pirate(player_ship_id)
+    return is_pirate(player_ship_id) or is_civilian_air_patrol(player_ship_id)
 
 def loot_rendezvous_radius():
     return 500
@@ -56,6 +56,9 @@ def is_tsn(ship_id):
 def is_ximni(ship_id):
     origin = get_origin(ship_id)
     return origin == "ximni"
+
+def is_civilian_air_patrol(ship_id):
+    return get_origin(ship_id) == "cap"
 
 # There may be other cases too besides the above
 # e.g. apparently players can play as arvonian ships now?
