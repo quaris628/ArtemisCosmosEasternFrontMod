@@ -73,6 +73,7 @@ if client_id == 0:
         civilian_count = random.randint(civilian_count,civilian_count*len(stations_friendly))
 
     prefabs = [prefab_npc_civilian_cargo, prefab_npc_civilian_science, prefab_npc_civilian_luxury_liner, prefab_npc_civilian_transport]
+    pirate_unarmed_prefabs = [prefab_pirate_npc_cargo, prefab_pirate_npc_science]
     for count in range(civilian_count):
         if len(stations_friendly) > 0:
             so = random.choice(stations_friendly)
@@ -80,9 +81,7 @@ if client_id == 0:
             spawn_pos = spawn_pos.rand_offset(3500, 5300, ring=True)
         
         if is_pirate(so.id):
-            # TODO
-            #prefab = random.choice(pirate_unarmed_prefabs)
-            continue
+            prefab = random.choice(pirate_unarmed_prefabs)
         else:
             prefab = random.choice(prefabs)
         
