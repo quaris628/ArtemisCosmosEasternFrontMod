@@ -93,7 +93,7 @@ def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, 
     if center is None:
         center = Vec3(0,0,0)
 
-    _station_weights  = {"starbase_industry": 5,"starbase_command": 3,"starbase_civil": 1,"starbase_science": 1}
+    _station_weights  = {"starbase_pirate_market_civil_ef": 2, "starbase_industry": 5,"starbase_command": 3,"starbase_civil": 1,"starbase_science": 1}
     # make the list of stations we will create -----------------------------------------------
     station_type_list = []
     total_weight = (12-DIFFICULTY) *2
