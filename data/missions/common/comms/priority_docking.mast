@@ -17,10 +17,10 @@
     station_comms_id = station_obj.name
     
     if not can_player_capital_ship_dock(COMMS_ORIGIN_ID, COMMS_SELECTED_ID, ignore_enemy_nearby=True):
-        comms_receive(f"We don't listen to you, {comms_id}. Go away.", title="Priority Docking Denied", title_color=station_color)
+        comms_receive(f"We don't listen to you, {comms_id}. Go away.", title="Priority Docking Denied", title_color=get_comms_message_title_color(COMMS_SELECTED_ID))
         yield fail
     
-    comms_receive(f"""{station_comms_id} will give {comms_id} priority docking for the next 2 minutes.^""", title="priority docking", title_color=station_color)
+    comms_receive(f"""{station_comms_id} will give {comms_id} priority docking for the next 2 minutes.^""", title="priority docking", title_color=get_comms_message_title_color(COMMS_SELECTED_ID))
     # Set a timer counting down the priority docking
     set_timer(ship_id,"priority_docking",120)
     # Set a variable for which station this ship can priority dock with
