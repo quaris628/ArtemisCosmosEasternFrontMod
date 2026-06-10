@@ -10,6 +10,7 @@ from sbs_utils.procedural.roles import add_role
 from sbs_utils.procedural.ship_data import get_ship_data_for
 
 from data.missions.common.spawn_wreck import spawn_wreck
+from data.missions.common.map_color_constants import get_comms_message_title_color
 
 def spawn_wrecks_and_derelicts_around(station_position, station_id, is_lethal_terrain_enabled):
     
@@ -129,18 +130,18 @@ def _send_comms_response_to_property_destroyed(responsible_player_ship_id, owner
     
     reputation = _get_local_salvage_yard_reputation(responsible_player_ship_id, owner_station_object.id)
     if reputation == SalvageYardReputationLevel.FIRST_WARNING:
-        comms_receive("Hey, why are you blowing up our stock?! Stop destroying our property!", title="Stop vandalizing!")
+        comms_receive("Hey, why are you blowing up our stock?! Stop destroying our property!", title="Stop vandalizing!", title_color=get_comms_message_title_color(owner_station_object.id))
     elif reputation == SalvageYardReputationLevel.SECOND_WARNING:
-        comms_receive("That ship hull still had usable air recyclers! Last warning before I permanently ban you from this establishment.", title="Stop vandalizing!")
+        comms_receive("That ship hull still had usable air recyclers! Last warning before I permanently ban you from this establishment.", title="Stop vandalizing!", title_color=get_comms_message_title_color(owner_station_object.id))
     elif reputation == SalvageYardReputationLevel.BANNED:
         if is_transition_to_global_ban:
-            comms_receive("Word has spread of your crimes. You are no longer welcome at any Salvage Yards!", title="Banned from all Salvage Yards")
+            comms_receive("Word has spread of your crimes. You are no longer welcome at any Salvage Yards!", title="Banned from all Salvage Yards", title_color=get_comms_message_title_color(owner_station_object.id))
             comms_broadcast(responsible_player_ship_id, "Banned from all Salvage Yards")
         elif is_transition_to_ban:
-            comms_receive("You are hereby banned from docking at this shipyard, vandal!", title="Banned")
+            comms_receive("You are hereby banned from docking at this shipyard, vandal!", title="Banned", title_color=get_comms_message_title_color(owner_station_object.id))
             comms_broadcast(responsible_player_ship_id, f"Banned from {owner_station_object.name}")
         else: # Player was already banned, and is still vandalizing
-            comms_receive("Stop blowing up our shipswrecks!!!", title="Stop vandalizing!")
+            comms_receive("Stop blowing up our shipswrecks!!!", title="Stop vandalizing!", title_color=get_comms_message_title_color(owner_station_object.id))
 
 # Reputation level
 
