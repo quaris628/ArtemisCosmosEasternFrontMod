@@ -76,7 +76,8 @@ def is_pirate_military(ship_id):
         "pirate_longbow_ef",
         "pirate_advanced_longbow_ef",
         "pirate_toranado_ef",
-        "pirate_ximni_graybeards_ghost_ef"
+        "pirate_ximni_graybeards_ghost_ef",
+        "starbase_pirate_shoshushen_command_ef"
     }
     return ship_type_key in pirate_military_ship_type_keys
 
