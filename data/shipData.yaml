@@ -1612,6 +1612,44 @@
     },
     {
       #---------------------------------- Starbase data --------------------------------
+      "key": "starbase_pirate_shoshushen_command_ef",
+      "name": "ShoShuShen",
+      "origin": "Pirate",
+      "side": "Pirate",
+      "artfileroot": "tsn-big-base",
+      "meshscale": 14.5201349258423,
+      "radarscale": 1.0,
+      "internalmapscale": 1.0,
+      "internalmapw": 30,
+      "internalmaph": 30,
+      "internalsymmetry": 1,
+      "exclusionradius": 120.0,
+      "shields": [
+        600
+      ],
+      "hullpoints": 200,
+      "roles": "station,pirate",
+      "hull_port_sets": {
+        "beam Primary Beams": [
+          {
+            "position": [
+              0,
+              4.277,
+              0.033
+            ],
+            "color": "red",
+            "arccolor": "#090",
+            "cycle_time": 6,
+            "damage_coeff": 1,
+            "range": 1100,
+            "arcwidth": 360,
+            "barrel_angle": 0
+          }
+        ]
+      }
+    },
+    {
+      #---------------------------------- Starbase data --------------------------------
       "key": "starbase_command",
       "name": "Command Starbase",
       "origin": "TSN",

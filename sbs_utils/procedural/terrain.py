@@ -93,7 +93,7 @@ def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, 
     if center is None:
         center = Vec3(0,0,0)
 
-    _station_weights  = {"starbase_pirate_market_civil_ef": 2, "starbase_industry": 5,"starbase_command": 3,"starbase_civil": 1,"starbase_science": 1}
+    _station_weights  = {"starbase_pirate_market_civil_ef": 2, "starbase_pirate_shoshushen_command_ef": 3, "starbase_industry": 5,"starbase_command": 3,"starbase_civil": 1,"starbase_science": 1}
     # make the list of stations we will create -----------------------------------------------
     station_type_list = []
     total_weight = (12-DIFFICULTY) *2
@@ -108,6 +108,10 @@ def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, 
 
         total_weight -= station_weight
         station_type_list.append(station_type)
+        
+        # only allow at most one ShoShuShen to spawn on the map
+        if station_type == "starbase_pirate_shoshushen_command_ef":
+            _station_weights.pop(station_type)
     
     while len(station_type_list) < min_num:
         station_type_list.append("starbase_civil")
