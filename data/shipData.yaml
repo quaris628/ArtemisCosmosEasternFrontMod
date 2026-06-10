@@ -1082,6 +1082,87 @@
       }
     },
     {
+      "key": "pirate_science_ef",
+      "name": "Science Vessel",
+      "origin": "Pirate",
+      "side": "Pirate",
+      "artfileroot": "pirate_science",
+      "meshscale": 0.3,
+      "radarscale": 1.0,
+      "exclusionradius": 40.0,
+      "meshrotate": 0,
+      "shields": [
+        25,
+        25
+      ],
+      "hullpoints": 2,
+      "long_desc": "Long-range exploration ship of the pirate fleet. Lightly armed.^1 weak 360-degree defensive beam^1 torpedo tube^Stores for 2 EMPs^Shields 25 front, 25 rear^Warp drive",
+      "tubecount": 1,
+      "torpedostart": [
+        {
+          "Homing": 0
+        },
+        {
+          "Nuke": 0
+        },
+        {
+          "EMP": 2
+        },
+        {
+          "Mine": 0
+        }
+      ],
+      #     "torpedostart": {"Homing": 8, "Nuke": 0, "EMP": 2, "Mine": 1 },
+      "internalmapscale": 1.0,
+      "internalmapw": 9,
+      "internalmaph": 16,
+      "internalsymmetry": 1,
+      "turn_rate": 1.75,
+      "speed_coeff": 0.7,
+      "scan_strength_coeff": 5.0,
+      "ship_energy_cost": 0.8,
+      "warp_energy_cost": 1.3,
+      "jump_energy_cost": 1.5,
+      "roles": "ship,pirate,science",
+      # 1 shuttle
+      "hull_port_sets": {
+        "beam Primary Beams": [
+          {
+            "position": [
+              0,
+              0,
+              100
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ff15",
+            "cycle_time": 1.0,
+            "damage_coeff": 0.5,
+            "range": 1000,
+            "arcwidth": 360,
+            "barrel_angle": 0
+          }
+        ],
+        "exhaust": [
+          {
+            "position": [
+              -43.0,
+              -1.5,
+              20.0
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              44.0,
+              -1.5,
+              20.0
+            ],
+            "color": "#1b5701"
+          }
+        ]
+      }
+    },
+    {
       #---------------------------------- data for default 3d data (if other data not found) --------------------------------
       "key": "unknown",
       "name": "unknown",
