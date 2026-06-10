@@ -51,6 +51,7 @@ data/missions/common/dmx.py
 !data/graphics/ships/advanced_longbow**
 !data/graphics/ships/toranado**
 !data/graphics/ships/pirate_cargo**
+!data/graphics/ships/pirate_science**
 
 !data/audio/Artemis 2 audio replacement notes.txt
 !data/audio/beep1.wav
