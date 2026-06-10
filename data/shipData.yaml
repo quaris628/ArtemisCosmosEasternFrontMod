@@ -1163,6 +1163,302 @@
       }
     },
     {
+      "key": "pirate_jager_ef",
+      "name": "Jager",
+      "side": "CAP",
+      "origin": "CAP",
+      "artfileroot": "jager",
+      "meshscale": 0.15,
+      "radarscale": 1.0,
+      "exclusionradius": 50.0,
+      "meshrotate": 0,
+      "shields": [
+        90,
+        90
+      ],
+      "hullpoints": 4,
+      "long_desc": "Gunboat of the Civilian Air Patrol.^4 main side-mounted beams, 1 forward shield disruptor beam, 8 weak defensive beams^2 torpedo tubes^Stores for 6 homings, 4 nukes, 8 EMPs^Shields 90 front, 90 rear^2 fighters^Warp drive",
+      "baycount": 2,
+      "tubecount": 2,
+      "torpedostart": [
+        {
+          "Homing": 6
+        },
+        {
+          "Nuke": 4
+        },
+        {
+          "EMP": 8
+        },
+        {
+          "Mine": 0
+        }
+      ],
+      "internalmapscale": 1.0,
+      "internalmapw": 11,
+      "internalmaph": 12,
+      "internalsymmetry": 1,
+      "turn_rate": 1.0,
+      "speed_coeff": 0.6,
+      "scan_strength_coeff": 1,
+      "ship_energy_cost": 1.0,
+      "warp_energy_cost": 1.0,
+      "jump_energy_cost": 0.75,
+      "roles": "ship, pirate",
+      # 2 fighters
+      "hull_port_sets": {
+        "beam Primary Beams": [
+          # 4 main side beams
+          {
+            "position": [
+              -120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ffec",
+            "cycle_time": 4,
+            "damage_coeff": 12,
+            "range": 1100,
+            "arcwidth": 32.4,
+            "barrel_angle": 263.29
+          },
+          {
+            "position": [
+              -120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ffec",
+            "cycle_time": 4,
+            "damage_coeff": 12,
+            "range": 1100,
+            "arcwidth": 32.4,
+            "barrel_angle": 276.71
+          },
+          {
+            "position": [
+              120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ffec",
+            "cycle_time": 4,
+            "damage_coeff": 12,
+            "range": 1100,
+            "arcwidth": 32.4,
+            "barrel_angle": 96.71
+          },
+          {
+            "position": [
+              120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ffec",
+            "cycle_time": 4,
+            "damage_coeff": 12,
+            "range": 1100,
+            "arcwidth": 32.4,
+            "barrel_angle": 83.29
+          },
+          
+          # 4 longer encircling beams
+          {
+            "position": [
+              -120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#ff005f",
+            "cycle_time": 35,
+            "damage_coeff": 5,
+            "range": 750,
+            "arcwidth": 90,
+            "barrel_angle": 315
+          },
+          {
+            "position": [
+              -120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#ff005f",
+            "cycle_time": 35,
+            "damage_coeff": 5,
+            "range": 750,
+            "arcwidth": 90,
+            "barrel_angle": 225
+          },
+          {
+            "position": [
+              120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#ff005f",
+            "cycle_time": 35,
+            "damage_coeff": 5,
+            "range": 750,
+            "arcwidth": 90,
+            "barrel_angle": 135
+          },
+          {
+            "position": [
+              120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#ff005f",
+            "cycle_time": 35,
+            "damage_coeff": 5,
+            "range": 750,
+            "arcwidth": 90,
+            "barrel_angle": 45
+          },
+          
+          # 4 shorter encircling beams
+          {
+            "position": [
+              0,
+              10,
+              260
+            ],
+            "color": "#67228f",
+            "arccolor": "#0074ff",
+            "cycle_time": 20,
+            "damage_coeff": 3,
+            "range": 500,
+            "arcwidth": 90,
+            "barrel_angle": 0
+          },
+          {
+            "position": [
+              120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#0074ff",
+            "cycle_time": 20,
+            "damage_coeff": 3,
+            "range": 500,
+            "arcwidth": 90,
+            "barrel_angle": 90
+          },
+          {
+            "position": [
+              0,
+              70,
+              -245
+            ],
+            "color": "#67228f",
+            "arccolor": "#0074ff",
+            "cycle_time": 20,
+            "damage_coeff": 3,
+            "range": 500,
+            "arcwidth": 90,
+            "barrel_angle": 180
+          },
+          {
+            "position": [
+              -120,
+              7,
+              110
+            ],
+            "color": "#67228f",
+            "arccolor": "#0074ff",
+            "cycle_time": 20,
+            "damage_coeff": 3,
+            "range": 500,
+            "arcwidth": 90,
+            "barrel_angle": 270
+          },
+          
+          # 1 shield disruptor
+          {
+            "position": [
+              0,
+              10,
+              260
+            ],
+            "color": "#67228f",
+            "arccolor": "#00ff95",
+            "cycle_time": 60,
+            "damage_coeff": 300.0,
+            "range": 1250,
+            "arcwidth": 1.8,
+            "barrel_angle": 0
+          },
+        ],
+        "exhaust": [
+          {
+            "position": [
+              -174.0,
+              -49.0,
+              -222
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              174.0,
+              -49.0,
+              -222
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              -43,
+              20,
+              -215
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              43,
+              20,
+              -215
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              -102,
+              -11,
+              -230
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              102,
+              -11,
+              -230
+            ],
+            "color": "#1b5701"
+          },
+          {
+            "position": [
+              0.0,
+              35.0,
+              -245.0
+            ],
+            "color": "#1b5701"
+          }
+        ]
+      }
+    },
+    {
       #---------------------------------- data for default 3d data (if other data not found) --------------------------------
       "key": "unknown",
       "name": "unknown",
