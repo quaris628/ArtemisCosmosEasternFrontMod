@@ -4,6 +4,7 @@ from sbs_utils.procedural.grid import grid_get_grid_data
 from sbs_utils.procedural.media import media_read_relative_file
 from sbs_utils.procedural.ship_data import get_ship_data
 
+from data.missions.common.downgrade_tsn import get_disabled_for_players_tsn_ship_type_keys, is_downgraded_tsn, downgrade_tsn_beam_damage_coeff, downgrade_tsn_energy_cost_coeff, downgrade_tsn_name_prefix, downgrade_tsn_description_suffix
 from data.missions.common.model_single_seat_craft_type import CraftCategory, get_craft_category, SingleSeatCraftType
 from data.missions.common.model_player_capital_ship_type import PlayerCapitalShipType
 from data.missions.common.model_vessel_type import Beam
@@ -59,6 +60,11 @@ def initialize_vessel_types_data():
     
     internal_ship_grids_by_ship_type_key = {
     ship_type_key: ship_grid_data["grid_objects"] for ship_type_key, ship_grid_data in grid_get_grid_data().items() if "grid_objects" in ship_grid_data and len(ship_grid_data["grid_objects"]) > 0}
+    
+    # or which are disabled for other reasons
+    
+    for ship_type_key in get_disabled_for_players_tsn_ship_type_keys():
+        internal_ship_grids_by_ship_type_key.pop(ship_type_key, None)
     
     # ----- And finally capital player ships -----
     
@@ -136,6 +142,10 @@ def _parse_vessel_properties_from_data(ship_type_data):
                 barrel_angle = beam_data["barrel_angle"]
             else:
                 barrel_angle = 0
+            
+            if is_downgraded_tsn(ship_type_key):
+                damage_coeff *= downgrade_tsn_beam_damage_coeff()
+            
             beams.append(Beam(cycle_time, damage_coeff, beam_range, arcwidth, barrel_angle))
     beams = sorted(beams, reverse=True)
     
@@ -164,6 +174,13 @@ def _create_player_capital_ship_type_from_data(ship_type_data, origin_to_single_
         single_seat_craft_types = default_single_seat_craft_types
     
     single_seat_craft_counts = _get_single_seat_craft_counts(internal_ship_grid_dict)
+    
+    if is_downgraded_tsn(ship_type_key):
+        ship_type_name = f"{downgrade_tsn_name_prefix()}{ship_type_name}"
+        description = f"{description}{downgrade_tsn_description_suffix()}"
+        ship_energy_cost *= downgrade_tsn_energy_cost_coeff()
+        warp_energy_cost *= downgrade_tsn_energy_cost_coeff()
+        jump_energy_cost *= downgrade_tsn_energy_cost_coeff()
     
     return PlayerCapitalShipType(ship_type_key, ship_type_name, origin, description, max_ordinance_counts, turn_rate, speed_coeff, scan_strength_coeff, roles, shields, hullpoints, beams, tube_count, has_warp_drive, has_jump_drive, ship_energy_cost, warp_energy_cost,jump_energy_cost, single_seat_craft_types, single_seat_craft_counts)
 
