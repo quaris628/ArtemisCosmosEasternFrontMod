@@ -2357,13 +2357,13 @@
           "Homing": 10
         },
         {
-          "Nuke": 2
+          "Nuke": 0
         },
         {
           "EMP": 0
         },
         {
-          "Mine": 15
+          "Mine": 4
         }
       ],
       #     "torpedostart": {"Homing": 10, "Nuke": 0, "EMP": 0, "Mine": 0 },
