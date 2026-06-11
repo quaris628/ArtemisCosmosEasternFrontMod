@@ -44,7 +44,7 @@
   
   // this value defines the color of the whole GUI
   // it's a string, that follows the color format of CSS3.
-  "gui-color-main": "#eee",
+  "gui-color-main": "#ffcc00",
   "gui-color-red-alert": "#600",
 
   // these values override the diplomatic relationship colors for this type of object
@@ -74,11 +74,11 @@
   "gui-color-pickup": "#fff",
   //  "gui-color-unscanned": "#999",  unused
 
-  "gui-color-deep-background": "#002",
+  "gui-color-deep-background": "#200",
   "gui-color-deep-background-image": "deep_back_tiled_image3",
 
-  "gui-color-dragbar-knob": "#eef",
-  "gui-color-dragbar-knob-text": "#88f",
+  "gui-color-dragbar-knob": "#ffcc00",
+  "gui-color-dragbar-knob-text": "#000",
 
   "gui-radar-side-colors-from-selected-ship": "no", //"yes",
 
@@ -123,8 +123,8 @@
   "player_heat_up_coeff": 0.0004,
   "player_coolant_coeff": 0.00009,
 
-  "coolant_dot_active_color": "#0f0",
-  "coolant_dot_reserve_color": "#042",
+  "coolant_dot_active_color": "#00bbff",
+  "coolant_dot_reserve_color": "#0000cc",
 
   "internal_color_ship_sillouette": "#444",
   "internal_color_ship_lines": "#ccc",
