@@ -76,6 +76,34 @@
                 set_killed_raider(destroyed_by_ship_id)
                 if old_docking_privileges == dock_attempt_result_disallowed_piracy():
                     send_tsn_admin_comms_message(destroyed_by_ship_id, "Docking Clearance Granted", "You seem to be on our side, and we want to work together to protect this sector. You may dock with stations for supplies. But no funny business.")
+        else:
+            destroyed_by_craft_id = get_player_single_seat_craft_attributed_to_damage(DAMAGE_SOURCE_ID, DAMAGE_PARENT_ID)
+            if destroyed_by_craft_id is not None and is_pirate(destroyed_by_craft_id):
+                home_dock_id = get_dedicated_link(destroyed_by_craft_id, "home_dock")
+                home_dock_object = to_space_object(home_dock_id)
+                if home_dock_object is not None and has_any_role(home_dock_id, "station,resupply"):
+                    # If no tsn stations or cargo ships remain on the map, then
+                    # it'd be nice to not give this reward, but I can't think of
+                    # a reasonably performant way to do that check. (Note the tsn
+                    # role also belongs to pirates, ximni, etc)
+                    
+                    # Reward home station with ordinance
+                    reward_ordinance_type = random.choice(["Homing", "Nuke", "EMP", "Mine"])
+                    # Note randrange lower bound is inclusive and upper bound is exclusive
+                    if reward_ordinance_type == "Homing":
+                        reward_ordinance_count = random.randrange(3, 7)
+                    elif reward_ordinance_type == "Nuke":
+                        reward_ordinance_count = 1
+                    elif reward_ordinance_type == "EMP":
+                        reward_ordinance_count = random.randrange(2, 4)
+                    elif reward_ordinance_type == "Mine":
+                        reward_ordinance_count = random.randrange(2, 4)
+                    
+                    total_ordinance_count = home_dock_object.data_set.get(f"{reward_ordinance_type}_NUM", 0)
+                    total_ordinance_count += reward_ordinance_count
+                    home_dock_object.data_set.set(f"{reward_ordinance_type}_NUM", total_ordinance_count, 0)
+                    
+                    comms_broadcast(destroyed_by_craft_id, f"The TSN rewards your defense! {reward_ordinance_count} {reward_ordinance_type} shipped to {home_dock_object.name}")
     
     dest_side = dest_obj.side
     dest_origin = dest_obj.origin
