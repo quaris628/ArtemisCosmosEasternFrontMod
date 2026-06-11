@@ -8,24 +8,24 @@
             "access"
         ],
         "colors": {
-            "silhouette": "#0F1F1F",
-            "lines": "#2F4F4F",
-            "nodes": "#778899",
-            "default": "LightYellow",
-            "room": "LightYellow",
-            "system": "springgreen",
+            "silhouette": "#200004",
+            "lines": "#bb8800",
+            "nodes": "#ffcc00",
+            "default": "gray",
+            "room": "#2fc468",
+            "system": "#ffcc00",
             "damcons": [
-                "slateblue",
-                "CadetBlue",
-                "royalblue"
+                "#66ffff",
+                "#00bbff",
+                "#0066ff"
             ]
         },
         "damage_colors": {
-            "default": "Crimson",
+            "default": "#ff0000",
             "damcons": [
-                "LightCoral",
-                "LightSalmon",
-                "Salmon"
+                "#ff88ff",
+                "#ff22ff",
+                "#8800ff"
             ]
         },
         "icons": {
