@@ -80,7 +80,7 @@ def terrain_random_point_box(all_points, left, top, front, right, bottom, back, 
         yield yld
 
 
-def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, center=None, min_num=0, points=None):
+def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, center=None, min_num=0, points=None, force_ds1_type=None):
     """
     Spawn stations throughout the map, weighted by the game difficutly, and wrap minefields around them as applicable based on the lethal terrain value.
     Args:
@@ -97,7 +97,12 @@ def terrain_spawn_stations(DIFFICULTY, lethal_value, x_min=-32500, x_max=32500, 
     # make the list of stations we will create -----------------------------------------------
     station_type_list = []
     total_weight = (12-DIFFICULTY) *2
-
+    
+    # Used in peacetime to force DS1 to be a command base
+    if force_ds1_type is not None:
+        total_weight -= _station_weights[force_ds1_type]
+        station_type_list.append(force_ds1_type)
+    
     while total_weight > 0:
         station_type = random.choice(list(_station_weights.keys()))
         station_weight = _station_weights[station_type]
