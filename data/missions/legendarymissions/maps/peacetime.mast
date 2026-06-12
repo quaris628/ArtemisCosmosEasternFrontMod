@@ -28,7 +28,7 @@ Properties:
     monster_value = terrain_to_value(MONSTER_SELECT)
     upgrade_value = terrain_to_value(UPGRADE_SELECT)
 
-    terrain_spawn_stations(DIFFICULTY, lethal_value, min_num=5)
+    terrain_spawn_stations(DIFFICULTY, lethal_value, min_num=5, force_ds1_type="starbase_command")
     await task_schedule(spawn_friendly_npc)
     await task_schedule(spawn_players)
     await task_schedule(default_player_friendly_eyes)
