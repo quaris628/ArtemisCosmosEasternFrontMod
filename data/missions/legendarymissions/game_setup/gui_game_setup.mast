@@ -133,12 +133,24 @@ default shared WAR_TIME_DELAY = None
     
     # ----- misc controls along the top -----
     
+    gui_section(style=f"area:10px,83px,100-10px,115px;")
+    
     # player ships count slider
-    gui_section(style=f"area:10px,80px,400px,115px;background:{color_background()};")
-    # $text is necessary in order to display a colon
-    # https://github.com/artemis-sbs/LegendaryMissions/issues/566#issuecomment-4291760757
-    gui_text("$text:Count:;", style=f"font:gui-3;col-width:100px;padding:5px,4px;color:{color_text_secondary()};")
-    create_player_ship_count_control()
+    with gui_sub_section(style=f"col-width:256px;background:{color_background()};"):
+        # $text is necessary in order to display a colon
+        # https://github.com/artemis-sbs/LegendaryMissions/issues/566#issuecomment-4291760757
+        gui_text("$text:Count:;", style=f"font:gui-3;col-width:100px;padding:5px,1px;color:{color_text_secondary()};")
+        create_player_ship_count_control()
+    
+    # For some reason an extra ~160px seems necessary in order to prevent
+    # the scramble checkbox from overlapping with the ship count control
+    gui_blank(style="col-width:170px;")
+    
+    # scramble controls
+    with gui_sub_section(style=f"background:{color_background()};"):
+        create_scramble_checkbox()
+        gui_blank(style="col-width:10px;")
+        create_scramble_start_delay_input()
     
     # ----- main table stuff -----
     
@@ -157,12 +169,16 @@ default shared WAR_TIME_DELAY = None
     
     # ship name
     with gui_sub_section(style=f"col-width:{ship_name_col_width};background:{color_background()};"):
-        gui_text("Name", style=f"font:gui-3;padding:4px,4px;color:{color_text_secondary()};")
+        gui_text("Name", style=f"font:gui-3;col-width:90px;padding:4px,4px;color:{color_text_secondary()};")
+        gui_blank(style=f"col-width:57px;")
+        create_scramble_randomize_all_ship_names_button()
     gui_blank(style="col-width:10px;")
     
     # ship type
     with gui_sub_section(style=f"col-width:{ship_type_col_width};background:{color_background()};"):
-        gui_text("Class", style=f"font:gui-3;padding:4px,4px;color:{color_text_secondary()};")
+        gui_text("Class", style=f"font:gui-3;col-width:90px;padding:4px,4px;color:{color_text_secondary()};")
+        gui_blank(style=f"col-width:340px;")
+        create_scramble_randomize_all_ship_types_button()
     
     # ----- table cells -----
     
@@ -182,6 +198,9 @@ default shared WAR_TIME_DELAY = None
         with gui_sub_section(style=f"col-width:{ship_name_col_width};"):
             gui_row(style="row-height:29px;")
             create_ship_name_input(ship)
+            gui_row(style=f"row-height:24px;")
+            gui_blank(style=f"col-width:170px;")
+            create_scramble_randomize_ship_name_button(ship_number)
         gui_blank(style="col-width:10px;")
         
         # ship type
@@ -189,8 +208,11 @@ default shared WAR_TIME_DELAY = None
             gui_row(style="row-height:29px;")
             create_player_ship_type_controls(ship)
             gui_row(style=f"row-height:24px;")
-            with gui_sub_section(style=f"col-width:{ship_type_col_width};"):
+            with gui_sub_section(style=f"col-width:446px;"):
                 create_player_ship_type_short_description_text(ship, style=f"font:gui-1;padding:4px,2px;color:{color_text()};background:{color_background()};")
+                gui_blank(style=f"col-width:5px;")
+                create_scramble_randomize_ship_type_button(ship_number)
+        
         gui_blank(style="col-width:5px;")
         
         # go to detailed customization button
@@ -203,6 +225,9 @@ default shared WAR_TIME_DELAY = None
                 gui_switch_to_customize_ship(ship, back_label=gui_game_setup_player_ships_tab)
         
         _set_player_ship_misc_gui_elements(ship.number, number_text, details_button)
+    
+    register_signals_for_randomize_ship_name_buttons()
+    register_signals_for_randomize_ship_type_buttons()
     
     signal_register(signal_game_setup_data_player_ship_availability_changed(), _gui_game_setup_player_ships_tab_on_availability_changed, is_temporary=True)
     task_schedule(_gui_game_setup_player_ships_tab_update_after_delay)
@@ -301,6 +326,10 @@ default shared WAR_TIME_DELAY = None
         # TODO allow server to switch consoles (without losing access to
         # the critical pause menu)
         disable_gui_top_tabs(client_id)
+        
+        if GAME_SETUP_DATA.is_scramble:
+            gui_section(style="area:300px,42px,100,80px;")
+            create_scramble_players_start_countdown_controls()
         
         # Do this after creating any gui element (such as the pause menu),
         # just in case this issue also affects signal_register(..., is_temporary=True)

@@ -21,6 +21,7 @@ from data.missions.common.controller_vessel_types_data import get_vessel_types_d
 from data.missions.common.controller_game_statistics import get_game_statistics
 from data.missions.common.pirate_features_definitions import can_loot
 from data.missions.common.q_logger import qlog, qlog_level_info
+from data.missions.common.scramble import scramble_players_start_delay_timer_start
 
 #from data.missions.legendarymissions.game_end.watch_for_game_end import set_game_end_conditions
 from sbs_utils.mast.mast_globals import MastGlobals
@@ -130,7 +131,14 @@ def initialize_game_setup_data():
     war_time_delay_in_minutes = SETTINGS.get("WAR_TIME_DELAY", 0)
     environment_settings = EnvironmentSetupData(terrain_freq, lethal_terrain_freq, friendly_ships_freq, monsters_freq, upgrades_freq, time_limit_in_minutes, war_time_delay_in_minutes)
     
-    _set_game_setup_data(GameSetupData(ship_agnostic_console_slots, player_ships, player_ship_count, difficulty, seed_value, map_identifier, environment_settings))
+    # ----- Misc -----
+    
+    scramble_settings = SETTINGS.get("SCRAMBLE", {})
+    is_scramble = scramble_settings.get("enable_by_default", False)
+    scramble_start_delay_seconds = scramble_settings.get("start_delay_seconds_default", False)
+    is_scramble_red_alert_on_players_start_enabled = scramble_settings.get("play_red_alert_when_players_start", True)
+    
+    _set_game_setup_data(GameSetupData(ship_agnostic_console_slots, player_ships, player_ship_count, difficulty, seed_value, map_identifier, environment_settings, is_scramble, scramble_start_delay_seconds, is_scramble_red_alert_on_players_start_enabled))
     
     yield AWAIT(delay_app(0.25))
     
@@ -217,7 +225,7 @@ def setup_game():
     # TODO Is this necessary? (Do some custom mission scripts use it?)
     #signal_emit("create_player_ships", None)
     
-    if is_at_least_one_player_ship_able_to_loot:
+    if is_at_least_one_player_ship_able_to_loot and not GAME_SETUP_DATA.is_scramble:
         # This behavior can be overridden for specific maps by
         # calling the same function later in the map-specific code
         set_game_end_conditions(end_if_no_ally_stations=False)
@@ -226,6 +234,9 @@ def setup_game():
             set_variable("WORLD_SELECT", map_obj)
             task_schedule(map_obj)
             break
+    
+    if GAME_SETUP_DATA.is_scramble:
+        scramble_players_start_delay_timer_start(GAME_SETUP_DATA.scramble_start_delay_seconds)
     
     return
 

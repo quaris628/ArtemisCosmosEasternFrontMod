@@ -12,7 +12,7 @@ from data.missions.common.library_function_patches import gui_represent_patched
 from data.missions.common.controller_vessel_types_data import get_vessel_types_data
 from data.missions.common.gui_color_scheme import color_text, color_text_secondary
 
-from model_game_setup_data import signal_game_setup_data_client_ready_changed, signal_game_setup_data_player_ship_count_changed
+from model_game_setup_data import signal_game_setup_data_client_ready_changed, signal_game_setup_data_player_ship_count_changed, signal_game_setup_is_scramble_changed
 from model_player_ship_setup_data import signal_player_ship_setup_data_selection_changed, signal_player_ship_setup_data_name_changed, signal_player_ship_setup_data_ship_type_changed, signal_player_ship_setup_data_is_destroyed_changed
 from controller_game_setup_data import get_game_setup_data
 
@@ -90,6 +90,7 @@ def set_up_syncing_for_all_ship_checkboxes(client_id):
     signal_register(signal_player_ship_setup_data_ship_type_changed(), _sync_ship_checkbox_on_ship_type_changed, is_temporary=True)
     signal_register(signal_game_setup_data_player_ship_count_changed(), _sync_ship_checkbox_on_ship_count_changed, is_temporary=True)
     signal_register(signal_player_ship_setup_data_is_destroyed_changed(), _sync_ship_checkbox_on_ship_destroyed_changed, is_temporary=True)
+    signal_register(signal_game_setup_is_scramble_changed(), _sync_ship_checkbox_on_is_scramble_changed, is_temporary=True)
 
 # ----- on-events/syncing -----
 
@@ -194,6 +195,26 @@ def _sync_ship_checkbox_on_ship_destroyed_changed():
     
     yield END()
 
+@label()
+def _sync_ship_checkbox_on_is_scramble_changed():
+    is_scramble = get_variable("IS_SCRAMBLE")
+    GAME_SETUP_DATA = get_game_setup_data()
+    
+    if not is_scramble:
+        for ship_number in range(1, GAME_SETUP_DATA.player_ship_count + 1):
+            checkbox, number_label, connections_label, primary_label, secondary_label, destroyed_text = _get_ship_checkbox_gui_elements(ship_number)
+            gui_show(primary_label)
+            gui_show(secondary_label)
+    else:
+        for ship_number in range(1, GAME_SETUP_DATA.player_ship_count + 1):
+            checkbox, number_label, connections_label, primary_label, secondary_label, destroyed_text = _get_ship_checkbox_gui_elements(ship_number)
+            gui_hide(primary_label)
+            gui_hide(secondary_label)
+    gui_represent_patched(primary_label)
+    gui_represent_patched(secondary_label)
+    
+    yield END()
+
 # ----- misc -----
 
 def ship_checkbox_height():
@@ -225,14 +246,18 @@ def _should_show_destroyed_text(ship):
 def _gui_show_or_hide_ship_checkbox(ship_number, show):
     GAME_SETUP_DATA = get_game_setup_data()
     checkbox, number_label, connections_label, primary_label, secondary_label, destroyed_text = _get_ship_checkbox_gui_elements(ship_number)
-    if checkbox is None or show != checkbox.is_hidden:
+    if checkbox is None:
         return
-    if show and checkbox.is_hidden:
+    if show:
         gui_show(checkbox)
         gui_show(number_label)
         gui_show(connections_label)
-        gui_show(primary_label)
-        gui_show(secondary_label)
+        if not GAME_SETUP_DATA.is_scramble:
+            gui_show(primary_label)
+            gui_show(secondary_label)
+        else:
+            gui_hide(primary_label)
+            gui_hide(secondary_label)
         ship = GAME_SETUP_DATA.get_player_ship_by_number(ship_number)
         if _should_show_destroyed_text(ship):
             gui_show(destroyed_text)

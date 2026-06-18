@@ -43,6 +43,8 @@ set_is_console_ship_specific("gamemaster", False)
     if not prepare_console("gamemaster", rerun_label=route_console_gamemaster_full_console, widget_list=""):
         ->END
     
+    GAME_SETUP_DATA = get_game_setup_data()
+    
     # for testing Side management screen
     # side = "tsn"
     # jump gamemaster_side_relations# {"side": "tsn"}
@@ -116,6 +118,11 @@ set_is_console_ship_specific("gamemaster", False)
     gui_layout_widget("science_2d_view")
     gui_section(style="area:50-200px,45px,50+200px,95px;")
     gui_layout_widget("radar_zoom_ctrl")
+    
+    # Scramble player start countdown timer controls
+    if GAME_SETUP_DATA.is_scramble:
+        gui_section(style="area:0,95px,100,127px;")
+        create_scramble_players_start_countdown_controls()
 
     # Whole screen
     section = gui_section(style="area:0,45px,100,100;")
@@ -212,6 +219,7 @@ set_is_console_ship_specific("gamemaster", False)
     # Middle
     #region Middle
     with gui_sub_section():
+        
         gui_row()
         # This spacer is hopefully a temporary band-aid solution so we don't cover up the 2d zoom controls
         # gui_spacer_row("60px;")
