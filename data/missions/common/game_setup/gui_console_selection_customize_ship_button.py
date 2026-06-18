@@ -12,6 +12,7 @@ from data.missions.common.gui_color_scheme import color_text
 from data.missions.common.operator_mode import is_client_verified_operator_admin, is_editing_player_ships_disabled
 
 from model_console_slot import signal_console_slot_deselect_or_select
+from model_game_setup_data import signal_game_setup_is_scramble_changed
 from controller_game_setup_data import get_game_setup_data
 from game_state import is_game_in_progress, signal_game_started, signal_game_ended
 from gui_customize_ship import gui_switch_to_customize_ship
@@ -36,6 +37,7 @@ def gui_create_customize_ship_button(client_id, x_left, y_top, x_right, y_bottom
     signal_register(signal_console_slot_deselect_or_select(client_id), _sync_customize_ship_button_on_console_selection_changed, is_temporary=True)
     signal_register(signal_game_started(), _sync_customize_ship_button_on_game_started, is_temporary=True)
     signal_register(signal_game_ended(), _sync_customize_ship_button_on_game_ended, is_temporary=True)
+    signal_register(signal_game_setup_is_scramble_changed(), _sync_customize_ship_button_on_is_scramble_changed, is_temporary=True)
     
     task_schedule(_update_customize_ship_button_after_delay)
 
@@ -95,6 +97,14 @@ def _sync_customize_ship_button_on_game_ended():
     
     yield END()
 
+@label()
+def _sync_customize_ship_button_on_is_scramble_changed():
+    client_id = get_variable("client_id")
+    
+    _sync_showing_or_hiding_customize_ship_button(client_id)
+    
+    yield END()
+
 def _sync_showing_or_hiding_customize_ship_button(client_id):
     button, button_label = _get_customize_ship_gui_elements()
     show = _can_customize_ship(client_id) and not is_game_in_progress()
@@ -116,6 +126,8 @@ def _console_identifiers_that_give_customize_ship_perms():
 
 def _can_customize_ship(client_id):
     GAME_SETUP_DATA = get_game_setup_data()
+    if GAME_SETUP_DATA.is_scramble:
+        return False
     selected_ship = GAME_SETUP_DATA.get_selected_ship(client_id)
     if selected_ship is None:
         return False

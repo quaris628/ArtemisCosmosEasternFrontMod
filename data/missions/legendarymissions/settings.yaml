@@ -158,6 +158,32 @@ PLAYER_LIST:
         ship: "pirate_ximni_graybeards_ghost_ef"
         face: "terran"
 
+# When scramble is enabled...
+# - On the console selection screen, player ship names and classes will be hidden,
+#   and some text describing the scramble situation shows at the top of the screen.
+# - On the game setup screen's player ships tab, buttons will show that, when
+#   clicked, randomize player ship names and classes.
+# - When the game starts, players won't start right away. Other in-game events
+#   will happen, such as enemies advancing on friendly bases. The players only
+#   start after a certain amount of time, or when the "Scramble now!" button on
+#   the server mainscreen (or in operator mode, the gamemaster screen) is clicked.
+# - If there is a player ship that can loot and all bases get destroyed, then the
+#   game ends instead of continuing like it normally would.
+SCRAMBLE:
+    # Scramble can also be enabled and disabled on the game setup screen.
+    enable_by_default: false
+    
+    # How long the game runs before the players start the game.
+    # This delay can also be set on the game setup screen, and after the game
+    # has started it can be increased or bypassed using controls on the server
+    # mainscreen (or in operator mode, the gamemaster screen).
+    start_delay_seconds_default: 60
+    
+    # Whether the red alert siren will play when the players start the game.
+    # Good for startling the players!
+    play_red_alert_when_players_start: true
+
+
 # Console settings
 CONSOLE_EXCLUSIVITIES:
     # Set to true to make the console only allow one person to take it at a time
