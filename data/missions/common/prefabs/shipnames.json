@@ -300,7 +300,8 @@
         "Belligerant Rodent",
         "Crown of Knives",
         "Deadly Silence",
-        "Excellent Plumage"
+        "Excellent Plumage",
+        "Pinkys Brain"
 ],
     "peacetime": [
         "Azusa",
@@ -520,7 +521,10 @@
         "Bluebird",
         "Codfish",
         "Dolphin",
-        "Egret"
+        "Egret",
+        "Coconut",
+        "African Swallow",
+        "European Swallow"
 ]
 
 }

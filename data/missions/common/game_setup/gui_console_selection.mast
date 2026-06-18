@@ -92,6 +92,10 @@ default TASK_LISTEN_FOR_AFTER_PLAYER_SHIP_DESTROYED = None
     
     create_help_button(gui_console_selection_main, unready_on_click=True)
     
+    # scramble description
+    gui_section(style="area:0,36px,100,96px;")
+    create_scramble_console_selection_description_text()
+    
     y_results = calculate_main_body_y_offsets_from_50()
     ship_specific_section_top_y_offset_from_50 = y_results[0]
     ship_agnostic_section_top_y_offset_from_50 = y_results[1]
@@ -145,6 +149,7 @@ default TASK_LISTEN_FOR_AFTER_PLAYER_SHIP_DESTROYED = None
     set_up_syncing_for_all_gui_console_checkboxes(client_id)
     signal_register(signal_game_setup_data_client_ready_changed(client_id), gui_console_selection_on_client_ready, is_temporary=True)
     signal_register(signal_game_started(), gui_console_selection_on_game_started, is_temporary=True)
+    signal_register(signal_scramble_start_players(), gui_console_selection_on_scramble_start_players, is_temporary=True)
     
     print(f"await gui() ==== gui_console_selection_main ====")
     await gui()
@@ -154,17 +159,36 @@ default TASK_LISTEN_FOR_AFTER_PLAYER_SHIP_DESTROYED = None
     
     if not (IS_READY and is_game_in_progress() and GAME_SETUP_DATA.can_client_enter_game(client_id)):
         ->END
+    if GAME_SETUP_DATA.is_scramble and is_scramble_players_start_delay_in_progress() and not is_client_verified_operator_admin():
+        ->END
     
     jump_into_game(delay_reroute_workaround=True)
     
     ->END
-    
 
 ==== gui_console_selection_on_game_started ====
     print(f"gui_console_selection_on_game_started client_id={client_id}")
     GAME_SETUP_DATA = get_game_setup_data()
     
     if not GAME_SETUP_DATA.is_client_ready(client_id):
+        ->END
+    if GAME_SETUP_DATA.is_scramble:
+        ->END
+    
+    jump_into_game()
+    
+    ->END
+
+==== gui_console_selection_on_scramble_start_players ====
+    GAME_SETUP_DATA = get_game_setup_data()
+    
+    if not is_game_in_progress():
+        ->END
+    
+    if GAME_SETUP_DATA.is_scramble_red_alert_on_players_start_enabled:
+        sbs.play_audio_file(client_id, "red_alert", 1.0, 1.0)
+    
+    if not (GAME_SETUP_DATA.is_client_ready(client_id) and GAME_SETUP_DATA.can_client_enter_game(client_id)):
         ->END
     
     jump_into_game()

@@ -19,6 +19,9 @@ import ../../common/document_screen_lib.py
 
 import ../../common/q_logger.py
 
+import ../../common/scramble.py
+import ../../common/gui_scramble_players_start_countdown_controls.py
+
 # data
 
 import model_console_slot.py
@@ -46,6 +49,13 @@ import gui_player_ship_count_control.py
 import gui_player_ship_name_input.py
 import gui_player_ship_type_controls.py
 import gui_player_ship_type_short_description_text.py
+import gui_scramble_checkbox.py
+import gui_scramble_start_delay_input.py
+import gui_scramble_randomize_all_ship_names_button.py
+import gui_scramble_randomize_ship_name_button.py
+import gui_scramble_randomize_all_ship_types_button.py
+import gui_scramble_randomize_ship_type_button.py
+import gui_scramble_console_selection_description_text.py
 
 # main gui
 

@@ -14,10 +14,10 @@ def create_player_ship_count_control():
     GAME_SETUP_DATA = get_game_setup_data()
     max_player_ship_count = GAME_SETUP_DATA.get_max_player_ship_count()
     
-    decrease_button = gui_button("-", style=f"font:gui-3;col-width:30px;padding:0,3px;color:{color_text_secondary()};")
-    slider = gui_int_slider(f"$text:int;low:1;high:{max_player_ship_count};", style=f"padding:0,3px;color:{color_text()}")
+    decrease_button = gui_button("-", style=f"font:gui-3;col-width:30px;color:{color_text_secondary()};")
+    slider = gui_int_slider(f"$text:int;low:1;high:{max_player_ship_count};", style=f"color:{color_text()}")
     slider.value = GAME_SETUP_DATA.player_ship_count
-    increase_button = gui_button("+", style=f"font:gui-3;col-width:30px;padding:0,3px;color:{color_text_secondary()};")
+    increase_button = gui_button("+", style=f"font:gui-3;col-width:30px;color:{color_text_secondary()};")
     
     _set_player_ship_count_slider(slider)
     

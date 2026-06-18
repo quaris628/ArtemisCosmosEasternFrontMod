@@ -4,7 +4,7 @@ from sbs_utils.procedural.signal import signal_emit
 from model_console_slots_container import ConsoleSlotsContainer
 
 class GameSetupData(ConsoleSlotsContainer):
-    def __init__(self, ship_agnostic_console_slots_iterable, player_ships, player_ship_count, difficulty, seed_value, map_identifier, environment_settings, is_respawn_players_enabled):
+    def __init__(self, ship_agnostic_console_slots_iterable, player_ships, player_ship_count, difficulty, seed_value, map_identifier, environment_settings, is_respawn_players_enabled, is_scramble, scramble_start_delay_seconds, is_scramble_red_alert_on_players_start_enabled):
         super().__init__(ship_agnostic_console_slots_iterable)
         self._player_ships = player_ships
         self._player_ship_count = player_ship_count
@@ -15,6 +15,9 @@ class GameSetupData(ConsoleSlotsContainer):
         self.map_identifier = map_identifier
         self.environment_settings = environment_settings
         self.is_respawn_players_enabled = is_respawn_players_enabled
+        self._is_scramble = is_scramble
+        self._scramble_start_delay_seconds = scramble_start_delay_seconds
+        self._is_scramble_red_alert_on_players_start_enabled = is_scramble_red_alert_on_players_start_enabled
         
         for player_ship in self._player_ships.values():
             player_ship.subscribe_to_at_least_one_console_selected_changed(self._on_at_least_one_ship_specific_console_changed)
@@ -214,6 +217,30 @@ class GameSetupData(ConsoleSlotsContainer):
         if map_object is None:
             return ""
         return map_object.display_name
+    
+    @property
+    def is_scramble(self):
+        return self._is_scramble
+    
+    @is_scramble.setter
+    def is_scramble(self, val):
+        if self._is_scramble != val:
+            self._is_scramble = val
+            signal_emit(signal_game_setup_is_scramble_changed(), data={"IS_SCRAMBLE": self._is_scramble})
+    
+    @property
+    def scramble_start_delay_seconds(self):
+        return self._scramble_start_delay_seconds
+    
+    @scramble_start_delay_seconds.setter
+    def scramble_start_delay_seconds(self, val):
+        if self._scramble_start_delay_seconds != val:
+            self._scramble_start_delay_seconds = val
+            signal_emit(signal_game_setup_scramble_start_delay_seconds_changed(), data={"SCRAMBLE_START_DELAY_SECONDS": self._scramble_start_delay_seconds})
+    
+    @property
+    def is_scramble_red_alert_on_players_start_enabled(self):
+        return self._is_scramble_red_alert_on_players_start_enabled
 
 def signal_game_setup_data_player_ship_count_changed():
     return "gsd_player_ship_count_changed"
@@ -227,3 +254,8 @@ def signal_game_setup_data_can_client_ready_changed(client_id):
     return f"gsd_can_client_ready_changed_{client_id}"
 def signal_game_setup_data_can_client_enter_game_changed(client_id):
     return f"gsd_can_client_enter_game_changed_{client_id}"
+
+def signal_game_setup_is_scramble_changed():
+    return "gsd_is_scramble_changed"
+def signal_game_setup_scramble_start_delay_seconds_changed():
+    return "gsd_scramble_start_delay_seconds_changed"
