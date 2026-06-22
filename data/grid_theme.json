@@ -63,8 +63,12 @@
                 "icon": 140,
                 "scale": 1.5
             },
-            "shield": {
-                "icon": 106,
+            "fwd": {
+                "icon": 177,
+                "scale": 1.5
+            },
+            "aft": {
+                "icon": 178,
                 "scale": 1.5
             },
             "beam": {
