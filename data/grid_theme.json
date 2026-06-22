@@ -75,6 +75,14 @@
                 "icon": 117,
                 "scale": 1.5
             },
+            "beam-port": {
+                "icon": 117,
+                "scale": 1.5
+            },
+            "beam-starboard": {
+                "icon": 176,
+                "scale": 1.5
+            },
             "saloon": {
                 "icon": 104,
                 "scale": 1.5
