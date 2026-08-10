@@ -111,45 +111,71 @@ PLAYER_CREATE_DEFAULT: true
 PLAYER_COUNT: 1
 PLAYER_SHIP_RESPAWN: false
 PLAYER_LIST: 
-    -   name: "Artemis"
+    -   name: "Farside"
+        side: "tsn"
+        ship: "pirate_strongbow_ef"
+        face: "terran"
+
+    -   name: "Fulminatae"
+        side: "tsn"
+        ship: "pirate_brigantine_ef"
+        face: "terran"
+
+    -   name: "Jimi-Saru"
+        side: "tsn"
+        ship: "pirate_advanced_longbow_ef"
+        face: "terran"
+
+    -   name: "Apocalypse"
+        side: "tsn"
+        ship: "pirate_toranado_ef"
+        face: "terran"
+
+    -   name: "Academia"
         side: "tsn"
         ship: "tsn_light_cruiser"
         face: "terran"
 
-    -   name: "Intrepid"
+    -   name: "Rum Runner"
         side: "tsn"
-        ship: "tsn_battle_cruiser"
+        ship: "pirate_cargo_ef"
         face: "terran"
 
-    -   name: "Aegis"
+    -   name: "Broadsides"
         side: "tsn"
-        ship: "tsn_battle_cruiser"
+        ship: "pirate_jager_ef"
         face: "terran"
 
-    -   name: "Horatio"
+    -   name: "GrayBeard's Ghost"
         side: "tsn"
-        ship: "tsn_battle_cruiser"
+        ship: "pirate_ximni_graybeards_ghost_ef"
         face: "terran"
 
-    -   name: "Excalibur"
-        side: "tsn"
-        ship: "tsn_battle_cruiser"
-        face: "terran"
+# When scramble is enabled...
+# - On the console selection screen, player ship names and classes will be hidden,
+#   and some text describing the scramble situation shows at the top of the screen.
+# - On the game setup screen's player ships tab, buttons will show that, when
+#   clicked, randomize player ship names and classes.
+# - When the game starts, players won't start right away. Other in-game events
+#   will happen, such as enemies advancing on friendly bases. The players only
+#   start after a certain amount of time, or when the "Scramble now!" button on
+#   the server mainscreen (or in operator mode, the gamemaster screen) is clicked.
+# - If there is a player ship that can loot and all bases get destroyed, then the
+#   game ends instead of continuing like it normally would.
+SCRAMBLE:
+    # Scramble can also be enabled and disabled on the game setup screen.
+    enable_by_default: false
+    
+    # How long the game runs before the players start the game.
+    # This delay can also be set on the game setup screen, and after the game
+    # has started it can be increased or bypassed using controls on the server
+    # mainscreen (or in operator mode, the gamemaster screen).
+    start_delay_seconds_default: 60
+    
+    # Whether the red alert siren will play when the players start the game.
+    # Good for startling the players!
+    play_red_alert_when_players_start: true
 
-    -   name: "Hera"
-        side: "tsn"
-        ship: "tsn_battle_cruiser"
-        face: "terran"
-
-    -   name: "Ceres"
-        side: "tsn"
-        ship: "tsn_battle_cruiser"
-        face: "terran"
-
-    -   name: "Diana"
-        side: "tsn"
-        ship: "tsn_battle_cruiser"
-        face: "terran"
 
 # Console settings
 CONSOLE_EXCLUSIVITIES:
@@ -162,7 +188,10 @@ CONSOLE_EXCLUSIVITIES:
     science: true
     comms: true
     mainscreen: false
+    threeDview: false
+    simplemap: false
     cinematic: false
+    internalship: false
     display_panels: false
     
     # ship-agnostic consoles
