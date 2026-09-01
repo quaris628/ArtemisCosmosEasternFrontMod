@@ -49,7 +49,14 @@ Properties:
         seed_value = random.randint(1,99999)
         random.seed(seed_value)
         print(f"Random Seed Value: {seed_value}")
-
+    
+    # Easter Egg
+    for ship_number in range(1, GAME_SETUP_DATA.player_ship_count + 1):
+        player_ship_data = GAME_SETUP_DATA.get_player_ship_by_number(ship_number)
+        if player_ship_data.ship_type_key == "pirate_cargo_ef" and "rum" in player_ship_data.name.lower():
+            task = task_schedule(easter_egg_rum_runner_mines, data={"PLAYER_SHIP_DATA": player_ship_data})
+            end_task_when_game_ends(task)
+    
     #------------------------------------------------------------------------------------------------------------
     # Add the "Neutral Zone" 
 
@@ -228,9 +235,21 @@ Properties:
     await delay_sim(seconds=5)
     jump check_neutral_zone
 
-
-
-
-
-
-
+==== easter_egg_rum_runner_mines ====
+    
+    # Need to wait until the player ship has been spawned
+    player_ship_object = to_space_object(PLAYER_SHIP_DATA.spawned_ship_id)
+    for ignored_var while player_ship_object is None:
+        await delay_sim(0.1)
+        player_ship_object = to_space_object(PLAYER_SHIP_DATA.spawned_ship_id)
+    
+    # Need to wait some extra time for setting Mine_NUM to work
+    # I do not know why this is necessary
+    await delay_sim(1)
+    
+    qlog(qlog_level_info(), f"Easter Egg - Starts with 2 extra mines because its name contains 'rum', its ship class is pirate cargo, and it's in a border war", player_ship_id=player_ship_object.id)
+    old_mine_count = player_ship_object.data_set.get("Mine_NUM", 0)
+    player_ship_object.data_set.set("Mine_NUM", old_mine_count + 2, 0)
+    comms_receive_internal("I have good news and bad news. The good news is, we found two mines smuggled into some of our cargo! The bad news is, that cargo was supposed to be the rum.", ids_or_obj=player_ship_object.id, from_name="Cargo Handler", title="Extra Mines", title_color="lime")
+    
+    ->END
