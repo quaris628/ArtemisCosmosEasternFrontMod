@@ -2,7 +2,7 @@
 Mod for the Artemis Cosmos Spaceship Bridge Simulator game that provides pirate-related features. Primarily for use by the Eastern Front online group.
 
 ###  To download the latest version:
-1) Go to https://github.com/quaris628/ArtemisEasternFrontMod/releases/latest
+1) Go to https://github.com/quaris628/ArtemisCosmosEasternFrontMod/releases/latest
 2) Download the "Source Code" zip file.
 
 ### To install:
